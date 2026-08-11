@@ -91,6 +91,7 @@ const DEFAULT_SCHOOL = {
     establishedYear: "1969",
     emisCode: "404030082",
     address: "Town Committee Garho, Taluka Ghorabari, District Thatta",
+    mapLocation: "8J44+7C2, Gharo",
     phone: "03222888313",
     email: "gblssgarho@gmail.com",
     principalName: "Imtiaz Ali Memon",
@@ -107,6 +108,1526 @@ const DEFAULT_SCHOOL = {
     totalClasses: "Class 6 to Class 8",
     shifts: "Morning",
 };
+const DEFAULT_TEACHERS = [
+    { id: uid(), name: "Imtiaz Ali", dob: "", designation: "JEST", schoolName: DEFAULT_SCHOOL.name },
+    { id: uid(), name: "Hyder Bux", dob: "", designation: "JEST", schoolName: DEFAULT_SCHOOL.name },
+    { id: uid(), name: "Shakeel Ahmed", dob: "", designation: "JEST", schoolName: DEFAULT_SCHOOL.name },
+    { id: uid(), name: "Maqbool Ahmed", dob: "", designation: "JEST", schoolName: DEFAULT_SCHOOL.name },
+    { id: uid(), name: "Muhammad Waris", dob: "", designation: "JEST", schoolName: DEFAULT_SCHOOL.name },
+    { id: uid(), name: "Abdul Rasheed", dob: "", designation: "JEST", schoolName: DEFAULT_SCHOOL.name },
+    { id: uid(), name: "Rasheed", dob: "", designation: "JEST", schoolName: DEFAULT_SCHOOL.name },
+    { id: uid(), name: "Ahmed Ali", dob: "", designation: "JEST", schoolName: DEFAULT_SCHOOL.name },
+];
+const SUBJECTS = [
+    ["english", "English"], ["math", "Mathematics"], ["gscience", "General Science"],
+    ["sst", "Social Studies"], ["islamiat", "Islamiat"], ["sindhi", "Sindhi"],
+    ["urdu", "Urdu"], ["computer", "Computer"], ["drawing", "Drawing"],
+    ["arabic", "Arabic"], ["agriculture", "Agriculture"],
+];
+const DEFAULT_STUDENTS = [
+    { id: uid(), grNumber: "195", name: "Muhammad Ismail", fatherName: "Haji Katiyar", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 60, math: 36, gscience: 70, sst: 86, islamiat: 68, sindhi: 78, urdu: 70, computer: 68, drawing: 76, arabic: 77, agriculture: 83 }, midterm: {} } },
+    { id: uid(), grNumber: "196", name: "Nisar Ahmed", fatherName: "Ismail Katiyar", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 33, math: 14, gscience: 10, sst: 55, islamiat: 44, sindhi: 40, urdu: 50, computer: 40, drawing: 45, arabic: 40, agriculture: 51 }, midterm: {} } },
+    { id: uid(), grNumber: "197", name: "Gul Nawaz", fatherName: "Imam Bux Lashari Baloch", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 58, math: 37, gscience: 50, sst: 34, islamiat: 40, sindhi: 38, urdu: 50, computer: 48, drawing: 43, arabic: 44, agriculture: 48 }, midterm: {} } },
+    { id: uid(), grNumber: "198", name: "Abdul Sattar", fatherName: "Imam Bux Lashari Baloch", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 55, math: 18, gscience: 58, sst: 35, islamiat: 45, sindhi: 66, urdu: 50, computer: 49, drawing: 53, arabic: 54, agriculture: 52 }, midterm: {} } },
+    { id: uid(), grNumber: "199", name: "Muhammad Jan", fatherName: "Inayatullah Wadhelo Baloch", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 25, math: 14, gscience: 33, sst: 33, islamiat: 67, sindhi: 65, urdu: 60, computer: 46, drawing: 53, arabic: 58, agriculture: 57 }, midterm: {} } },
+    { id: uid(), grNumber: "200", name: "Abdul Sattar", fatherName: "Muhammad Ismail Katiyar", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 30, math: 22, gscience: 33, sst: 33, islamiat: 42, sindhi: 40, urdu: 50, computer: 41, drawing: 37, arabic: 40, agriculture: 48 }, midterm: {} } },
+    { id: uid(), grNumber: "201", name: "Saqib Ashraf", fatherName: "Muhammad Ashraf Khaskheli", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 65, math: 58, gscience: 66, sst: 74, islamiat: 70, sindhi: 85, urdu: 72, computer: 76, drawing: 74, arabic: 81, agriculture: 82 }, midterm: {} } },
+    { id: uid(), grNumber: "202", name: "Abdul Bari", fatherName: "Noor Ahmed Baloch", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 58, math: 34, gscience: 63, sst: 64, islamiat: 61, sindhi: 76, urdu: 67, computer: 60, drawing: 63, arabic: 71, agriculture: 71 }, midterm: {} } },
+    { id: uid(), grNumber: "203", name: "Abdul Basit", fatherName: "Noor Ahmed Baloch", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 65, math: 53, gscience: 81, sst: 72, islamiat: 59, sindhi: 68, urdu: 68, computer: 67, drawing: 71, arabic: 69, agriculture: 73 }, midterm: {} } },
+    { id: uid(), grNumber: "204", name: "Kulsoom", fatherName: "Noor Ahmed Baloch", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 56, math: 81, gscience: 80, sst: 55, islamiat: 50, sindhi: 49, urdu: 60, computer: 66, drawing: 66, arabic: 62, agriculture: 63 }, midterm: {} } },
+    { id: uid(), grNumber: "205", name: "Shokat Ali", fatherName: "Rasool Bux Baloch", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 60, math: 43, gscience: 73, sst: 40, islamiat: 51, sindhi: 81, urdu: 67, computer: 59, drawing: 63, arabic: 65, agriculture: 64 }, midterm: {} } },
+    { id: uid(), grNumber: "206", name: "Altaf Hussain", fatherName: "Saddique Memon", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 15, math: 20, gscience: 58, sst: 35, islamiat: 50, sindhi: 40, urdu: 60, computer: 39, drawing: 49, arabic: 55, agriculture: 56 }, midterm: {} } },
+    { id: uid(), grNumber: "207", name: "Rizwan Ali", fatherName: "Muhammad Saleh Khaskhali", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 15, math: 30, gscience: 40, sst: 34, islamiat: 47, sindhi: 35, urdu: 60, computer: 40, drawing: 42, arabic: 49, agriculture: 45 }, midterm: {} } },
+    { id: uid(), grNumber: "208", name: "Yaseen Ali", fatherName: "Muhammad Essa Memon", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 50, math: 43, gscience: 70, sst: 71, islamiat: 72, sindhi: 62, urdu: 66, computer: 70, drawing: 66, arabic: 69, agriculture: 68 }, midterm: {} } },
+    { id: uid(), grNumber: "209", name: "Muhammad Saleem", fatherName: "Latif Jat", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 50, math: 40, gscience: 68, sst: 73, islamiat: 60, sindhi: 86, urdu: 61, computer: 71, drawing: 68, arabic: 73, agriculture: 78 }, midterm: {} } },
+    { id: uid(), grNumber: "210", name: "Muhammad Azeem", fatherName: "Gul Sher Jat", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: null, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "211", name: "Farhan Ali", fatherName: "Punhoon Rajero Baloch", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 67, math: 85, gscience: 86, sst: 87, islamiat: 65, sindhi: 78, urdu: 68, computer: 85, drawing: 85, arabic: 83, agriculture: 84 }, midterm: {} } },
+    { id: uid(), grNumber: "212", name: "Furqan Ali", fatherName: "Punhoon Rajero Baloch", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 57, math: 85, gscience: 62, sst: 89, islamiat: 55, sindhi: 55, urdu: 66, computer: 72, drawing: 72, arabic: 77, agriculture: 79 }, midterm: {} } },
+    { id: uid(), grNumber: "213", name: "Muhammad Soomar", fatherName: "Ali Muhammad Rajero Baloch", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 55, math: 85, gscience: 90, sst: 81, islamiat: 75, sindhi: 67, urdu: 70, computer: 74, drawing: 84, arabic: 83, agriculture: 82 }, midterm: {} } },
+    { id: uid(), grNumber: "214", name: "Azra Bano", fatherName: "Ali Muhammad Rajero Baloch", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 55, math: 85, gscience: 69, sst: 60, islamiat: 65, sindhi: 35, urdu: 60, computer: 65, drawing: 68, arabic: 66, agriculture: 67 }, midterm: {} } },
+    { id: uid(), grNumber: "215", name: "Aun Ali", fatherName: "Zamir Hussain Perozani", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 65, math: 80, gscience: 71, sst: 60, islamiat: 55, sindhi: 40, urdu: 66, computer: 71, drawing: 63, arabic: 60, agriculture: 63 }, midterm: {} } },
+    { id: uid(), grNumber: "216", name: "Inayatullah", fatherName: "Rehmatullah Baloch", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 93, math: 97, gscience: 92, sst: 98, islamiat: 99, sindhi: 78, urdu: 86, computer: 96, drawing: 95, arabic: 93, agriculture: 96 }, midterm: {} } },
+    { id: uid(), grNumber: "217", name: "Muhammad Akram", fatherName: "Muhammad Shah Syed", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: null, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "218", name: "Sartaj Ahmed", fatherName: "Abdul Razaque Memon", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 85, math: 84, gscience: 82, sst: 62, islamiat: 60, sindhi: 35, urdu: 70, computer: 73, drawing: 73, arabic: 70, agriculture: 65 }, midterm: {} } },
+    { id: uid(), grNumber: "219", name: "Arshad Ali", fatherName: "Gulsher Ali Khaskheli", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 30, math: 80, gscience: 33, sst: 34, islamiat: 40, sindhi: 33, urdu: 58, computer: 48, drawing: 52, arabic: 43, agriculture: 50 }, midterm: {} } },
+    { id: uid(), grNumber: "220", name: "Shakeel", fatherName: "Abdul Shakoor Katiyar", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 74, math: 90, gscience: 75, sst: 82, islamiat: 90, sindhi: 63, urdu: 78, computer: 84, drawing: 87, arabic: 86, agriculture: 88 }, midterm: {} } },
+    { id: uid(), grNumber: "221", name: "Habibullah", fatherName: "Abdul Shakoor Katiyar", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 84, math: 90, gscience: 82, sst: 90, islamiat: 85, sindhi: 80, urdu: 77, computer: 92, drawing: 87, arabic: 94, agriculture: 88 }, midterm: {} } },
+    { id: uid(), grNumber: "222", name: "Muhammad Azeem", fatherName: "Basham Baloch", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 32, math: 55, gscience: 87, sst: 60, islamiat: 33, sindhi: 48, urdu: 60, computer: 58, drawing: 62, arabic: 59, agriculture: 54 }, midterm: {} } },
+    { id: uid(), grNumber: "223", name: "Ghulam Dastageer", fatherName: "Ghulam Nabi Katiyar", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 76, math: 83, gscience: 90, sst: 83, islamiat: 70, sindhi: 74, urdu: 70, computer: 79, drawing: 78, arabic: 79, agriculture: 77 }, midterm: {} } },
+    { id: uid(), grNumber: "224", name: "Shah Muhammad", fatherName: "Muhammad Lashari", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 15, math: 70, gscience: 36, sst: 50, islamiat: 45, sindhi: 40, urdu: 61, computer: 54, drawing: 56, arabic: 54, agriculture: 58 }, midterm: {} } },
+    { id: uid(), grNumber: "226", name: "Zulfiqar Ali", fatherName: "Ahmed Khan Lashari", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 50, math: 36, gscience: 71, sst: 73, islamiat: 76, sindhi: 62, urdu: 68, computer: 72, drawing: 73, arabic: 80, agriculture: 76 }, midterm: {} } },
+    { id: uid(), grNumber: "227", name: "Gul Bahar Ali", fatherName: "Ghulam Hussain Rajero Baloch", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 40, math: 48, gscience: 61, sst: 55, islamiat: 62, sindhi: 45, urdu: 67, computer: 58, drawing: 66, arabic: 69, agriculture: 68 }, midterm: {} } },
+    { id: uid(), grNumber: "228", name: "Javed Ali", fatherName: "Muhammad Ibrahim Khaskheli", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 20, math: 16, gscience: 19, sst: 45, islamiat: 62, sindhi: 64, urdu: 60, computer: 49, drawing: 51, arabic: 53, agriculture: 65 }, midterm: {} } },
+    { id: uid(), grNumber: "229", name: "Abdul Razzaque", fatherName: "Muhammad Hussain Mallah", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 30, math: 45, gscience: 8, sst: 43, islamiat: 61, sindhi: 58, urdu: 67, computer: 45, drawing: 52, arabic: 54, agriculture: 64 }, midterm: {} } },
+    { id: uid(), grNumber: "230", name: "Ahsan Ali", fatherName: "Hamzo Kapoorani Baloch", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 30, math: 85, gscience: 84, sst: 45, islamiat: 45, sindhi: 37, urdu: 60, computer: 59, drawing: 66, arabic: 66, agriculture: 64 }, midterm: {} } },
+    { id: uid(), grNumber: "231", name: "Iqra Bano", fatherName: "Pir Muhammad Rajero Baloch", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 52, math: 56, gscience: 70, sst: 55, islamiat: 45, sindhi: 54, urdu: 58, computer: 63, drawing: 58, arabic: 64, agriculture: 58 }, midterm: {} } },
+    { id: uid(), grNumber: "232", name: "Benazir", fatherName: "Muhammad Khan Baloch", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 68, math: 85, gscience: 80, sst: 65, islamiat: 55, sindhi: 57, urdu: 60, computer: 67, drawing: 71, arabic: 67, agriculture: 70 }, midterm: {} } },
+    { id: uid(), grNumber: "233", name: "Dur Malka", fatherName: "Muhammad Sadique Rind Baloch", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 45, math: 53, gscience: 76, sst: 60, islamiat: 45, sindhi: 45, urdu: 50, computer: 56, drawing: 57, arabic: 62, agriculture: 57 }, midterm: {} } },
+    { id: uid(), grNumber: "234", name: "Liaquat Ali", fatherName: "Ahmed Khaskheli", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 30, math: 50, gscience: 18, sst: 85, islamiat: 68, sindhi: 78, urdu: 66, computer: 62, drawing: 63, arabic: 62, agriculture: 75 }, midterm: {} } },
+    { id: uid(), grNumber: "235", name: "Nazir Ahmed", fatherName: "Allah Dino Sholani", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 60, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "236", name: "Shumaila Bano", fatherName: "Ghulam Hussain Baloch", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 45, math: 41, gscience: 72, sst: 65, islamiat: 50, sindhi: 44, urdu: 60, computer: 63, drawing: 58, arabic: 63, agriculture: 66 }, midterm: {} } },
+    { id: uid(), grNumber: "237", name: "Waseem Akhter", fatherName: "Abdul Hameed Samoon", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 40, math: 16, gscience: 33, sst: 60, islamiat: 55, sindhi: 50, urdu: 68, computer: 54, drawing: 57, arabic: 59, agriculture: 64 }, midterm: {} } },
+    { id: uid(), grNumber: "238", name: "Mehtab", fatherName: "Muhammad Anwar Shoro", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 25, math: 28, gscience: 7, sst: 33, islamiat: 64, sindhi: 33, urdu: 50, computer: 43, drawing: 36, arabic: 43, agriculture: 53 }, midterm: {} } },
+    { id: uid(), grNumber: "239", name: "Muhammad Waseem", fatherName: "Khamiso Memon", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 30, math: 41, gscience: 33, sst: 33, islamiat: 52, sindhi: 33, urdu: 50, computer: 44, drawing: 40, arabic: 45, agriculture: 52 }, midterm: {} } },
+    { id: uid(), grNumber: "240", name: "Abdul Sattar", fatherName: "Muhammad Moosa Memon", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: null, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "241", name: "Shoaib Ahmed", fatherName: "Raheb Baloch", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: null, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "242", name: "Abdul Khalique", fatherName: "Abdul Fatah Baloch", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: null, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "243", name: "Irfan Ali", fatherName: "Muhammad Usman Khaskheli", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 10, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "244", name: "Rustam Ali", fatherName: "Abdul Shakoor Samoon", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: null, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "245", name: "Riaz Ahmed", fatherName: "Muhammad Ramzan Memon", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 51, math: 42, gscience: 55, sst: 62, islamiat: 73, sindhi: 45, urdu: 70, computer: 66, drawing: 62, arabic: 71, agriculture: 65 }, midterm: {} } },
+    { id: uid(), grNumber: "246", name: "Parvaiz Ahmed", fatherName: "Muhammad Qasim Memon", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 45, math: 46, gscience: 40, sst: 47, islamiat: 68, sindhi: 46, urdu: 69, computer: 51, drawing: 57, arabic: 56, agriculture: 59 }, midterm: {} } },
+    { id: uid(), grNumber: "247", name: "Khadim Hussain", fatherName: "Muhammad Ali Bukero", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 10, math: 32, gscience: 12, sst: 35, islamiat: 64, sindhi: 33, urdu: 50, computer: 34, drawing: 41, arabic: 38, agriculture: 45 }, midterm: {} } },
+    { id: uid(), grNumber: "248", name: "Sohail Ahmed", fatherName: "Raheb Baloch", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: null, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "249", name: "Shah Nawaz", fatherName: "Muhammad Soomar Memon", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 45, math: 48, gscience: 43, sst: 41, islamiat: 58, sindhi: 67, urdu: 67, computer: 55, drawing: 54, arabic: 61, agriculture: 60 }, midterm: {} } },
+    { id: uid(), grNumber: "250", name: "Saima", fatherName: "Najeebullah Lashari", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: null, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "290", name: "Danish", fatherName: "Muhammad Ibrahim Khaskheli", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 58, math: 50, gscience: 60, sst: 70, islamiat: 73, sindhi: 46, urdu: 69, computer: 70, drawing: 72, arabic: 69, agriculture: 77 }, midterm: {} } },
+    { id: uid(), grNumber: "301", name: "Shaher Bano", fatherName: "Abdul Ghani Baloch", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 55, math: 85, gscience: 77, sst: 64, islamiat: 55, sindhi: 62, urdu: 65, computer: 67, drawing: 67, arabic: 68, agriculture: 70 }, midterm: {} } },
+    { id: uid(), grNumber: "302", name: "Mithan", fatherName: "Wali Muhammad Jat", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: null, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "304", name: "Wazeer Ahmed", fatherName: "Rasheed Ahmed Mallah", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: null, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "307", name: "Sajjad", fatherName: "Khamiso Rind", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 55, math: 45, gscience: 34, sst: 34, islamiat: 50, sindhi: 40, urdu: 57, computer: 45, drawing: 47, arabic: 53, agriculture: 54 }, midterm: {} } },
+    { id: uid(), grNumber: "374", name: "Noman Ali", fatherName: "Shabeer Hussain Rajput", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 5, math: 46, gscience: 8, sst: 33, islamiat: 55, sindhi: 33, urdu: 50, computer: 34, drawing: 39, arabic: 43, agriculture: 47 }, midterm: {} } },
+    { id: uid(), grNumber: "386", name: "Kashif Ali", fatherName: "Muhammad Rafique Bhatti", class: "VIII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 65, math: 32, gscience: 40, sst: 39, islamiat: 45, sindhi: 33, urdu: 60, computer: 53, drawing: 50, arabic: 49, agriculture: 53 }, midterm: {} } },
+    { id: uid(), grNumber: "251", name: "Zulfiqar Ali", fatherName: "Rab Dino Khaskheli", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 55, math: 30, gscience: 45, sst: 43, islamiat: 42, sindhi: 45, urdu: 60, computer: 47, drawing: 52, arabic: 47, agriculture: 51 }, midterm: {} } },
+    { id: uid(), grNumber: "252", name: "Ali Muhammad", fatherName: "Muhammad Hassan Ratto", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 70, math: 25, gscience: 33, sst: 40, islamiat: 58, sindhi: 57, urdu: 56, computer: 54, drawing: 47, arabic: 57, agriculture: 57 }, midterm: {} } },
+    { id: uid(), grNumber: "253", name: "Bilawal", fatherName: "Nawaz Ali Memon", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 30, math: 30, gscience: 74, sst: 57, islamiat: 53, sindhi: 57, urdu: 60, computer: 61, drawing: 58, arabic: 65, agriculture: 67 }, midterm: {} } },
+    { id: uid(), grNumber: "254", name: "Sagar Ali", fatherName: "Qadir Bux Khalifo", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 62, math: 63, gscience: 86, sst: 73, islamiat: 82, sindhi: 85, urdu: 70, computer: 81, drawing: 84, arabic: 87, agriculture: 90 }, midterm: {} } },
+    { id: uid(), grNumber: "255", name: "Gulzar", fatherName: "Ghulam Nabi Memon", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 40, math: 30, gscience: 75, sst: 60, islamiat: 69, sindhi: 68, urdu: 60, computer: 63, drawing: 63, arabic: 75, agriculture: 67 }, midterm: {} } },
+    { id: uid(), grNumber: "256", name: "Gul Hassan", fatherName: "Hussain Bux Wadhelo Baloch", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 12, math: 28, gscience: 50, sst: 47, islamiat: 47, sindhi: 51, urdu: 50, computer: 50, drawing: 55, arabic: 55, agriculture: 54 }, midterm: {} } },
+    { id: uid(), grNumber: "257", name: "Muhammad Owais", fatherName: "Amanullah Wadhelo Baloch", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 15, math: 31, gscience: 34, sst: 35, islamiat: 35, sindhi: 39, urdu: 62, computer: 43, drawing: 44, arabic: 49, agriculture: 49 }, midterm: {} } },
+    { id: uid(), grNumber: "258", name: "Ghazi Khan", fatherName: "Noor Muhammad Memon", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 37, math: 28, gscience: 70, sst: 46, islamiat: 67, sindhi: 70, urdu: 60, computer: 58, drawing: 61, arabic: 64, agriculture: 67 }, midterm: {} } },
+    { id: uid(), grNumber: "259", name: "Allah Bachayo", fatherName: "Khamoon Memon", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 5, math: 30, gscience: 6, sst: 26, islamiat: 34, sindhi: 33, urdu: 56, computer: 28, drawing: 35, arabic: 33, agriculture: 43 }, midterm: {} } },
+    { id: uid(), grNumber: "260", name: "Bilawal", fatherName: "Muhammad Rafique Lashari", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 33, math: 30, gscience: 33, sst: 39, islamiat: 53, sindhi: 33, urdu: 47, computer: 44, drawing: 41, arabic: 51, agriculture: 45 }, midterm: {} } },
+    { id: uid(), grNumber: "261", name: "Mumtaz Ali", fatherName: "Imam Bux Lashari", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 30, math: 30, gscience: 57, sst: 65, islamiat: 51, sindhi: 47, urdu: 60, computer: 54, drawing: 55, arabic: 60, agriculture: 63 }, midterm: {} } },
+    { id: uid(), grNumber: "262", name: "Ali Akbar", fatherName: "Imam Bux Lashari", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 42, math: 38, gscience: 18, sst: 51, islamiat: 55, sindhi: 49, urdu: 63, computer: 49, drawing: 50, arabic: 50, agriculture: 60 }, midterm: {} } },
+    { id: uid(), grNumber: "263", name: "Sharafat Ali", fatherName: "Barkat Ali Memon", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 80, math: 75, gscience: 46, sst: 53, islamiat: 56, sindhi: 81, urdu: 78, computer: 67, drawing: 65, arabic: 65, agriculture: 73 }, midterm: {} } },
+    { id: uid(), grNumber: "264", name: "Muhammad Saleem", fatherName: "Ayoub Katyar", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 5, math: 51, gscience: 33, sst: 25, islamiat: 38, sindhi: 45, urdu: 50, computer: 39, drawing: 43, arabic: 44, agriculture: 41 }, midterm: {} } },
+    { id: uid(), grNumber: "265", name: "Abdul Ghafoor", fatherName: "Abdul Shakoor Khaskheli", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 13, math: 39, gscience: 8, sst: 41, islamiat: 45, sindhi: 55, urdu: 60, computer: 39, drawing: 47, arabic: 45, agriculture: 54 }, midterm: {} } },
+    { id: uid(), grNumber: "266", name: "Naveed Ahmed", fatherName: "Abdul Rehman Soomro", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: null, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "267", name: "Shavez Ali", fatherName: "Akhtar Hussain Kalmati Baloch", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 33, math: 52, gscience: 63, sst: 57, islamiat: 42, sindhi: 33, urdu: 60, computer: 51, drawing: 59, arabic: 61, agriculture: 57 }, midterm: {} } },
+    { id: uid(), grNumber: "268", name: "Salma", fatherName: "Akhtar Hussain Kalmati Baloch", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 38, math: 46, gscience: 40, sst: 33, islamiat: 50, sindhi: 44, urdu: 50, computer: 47, drawing: 48, arabic: 51, agriculture: 48 }, midterm: {} } },
+    { id: uid(), grNumber: "269", name: "Fayaz Ali", fatherName: "Rajab Ali Khaskheli", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 51, math: 58, gscience: 10, sst: 23, islamiat: 34, sindhi: 51, urdu: 50, computer: 39, drawing: 45, arabic: 46, agriculture: 41 }, midterm: {} } },
+    { id: uid(), grNumber: "270", name: "Ahmed Khan", fatherName: "Manthar Jat", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 34, math: 38, gscience: 10, sst: 34, islamiat: 41, sindhi: 66, urdu: 60, computer: 46, drawing: 47, arabic: 43, agriculture: 51 }, midterm: {} } },
+    { id: uid(), grNumber: "271", name: "Muhammad Siddique", fatherName: "Muhammad Ilyas Katyar", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 60, math: 53, gscience: 61, sst: 54, islamiat: 78, sindhi: 79, urdu: 77, computer: 72, drawing: 77, arabic: 76, agriculture: 74 }, midterm: {} } },
+    { id: uid(), grNumber: "272", name: "Saleem", fatherName: "Ismail Jat", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 25, math: 30, gscience: 6, sst: 20, islamiat: 42, sindhi: 52, urdu: 46, computer: 37, drawing: 38, arabic: 35, agriculture: 40 }, midterm: {} } },
+    { id: uid(), grNumber: "273", name: "Mohammad Anees", fatherName: "Hanifo Jat", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 50, math: 53, gscience: 12, sst: 35, islamiat: 49, sindhi: 46, urdu: 47, computer: 42, drawing: 47, arabic: 47, agriculture: 45 }, midterm: {} } },
+    { id: uid(), grNumber: "274", name: "Waheed Ali", fatherName: "Muhammad Uris Ghoto", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 75, math: 73, gscience: 72, sst: 71, islamiat: 80, sindhi: 64, urdu: 70, computer: 77, drawing: 77, arabic: 76, agriculture: 81 }, midterm: {} } },
+    { id: uid(), grNumber: "275", name: "Sajid Ali", fatherName: "Muhammad Uris Ghoto", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 64, math: 60, gscience: 67, sst: 54, islamiat: 60, sindhi: 61, urdu: 66, computer: 65, drawing: 70, arabic: 64, agriculture: 71 }, midterm: {} } },
+    { id: uid(), grNumber: "276", name: "Ahmed", fatherName: "Mushtaque Ahmed Wadhelo Baloch", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 20, math: 31, gscience: 50, sst: 65, islamiat: 67, sindhi: 53, urdu: 40, computer: 48, drawing: 59, arabic: 62, agriculture: 62 }, midterm: {} } },
+    { id: uid(), grNumber: "277", name: "Nazia", fatherName: "Ali Nawaz Khalifo", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 67, math: 80, gscience: 73, sst: 75, islamiat: 83, sindhi: 82, urdu: 80, computer: 83, drawing: 86, arabic: 90, agriculture: 86 }, midterm: {} } },
+    { id: uid(), grNumber: "278", name: "Sheeraz Aziz", fatherName: "Abdul Aziz Memon", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 30, math: 53, gscience: 2, sst: 33, islamiat: 40, sindhi: 33, urdu: 45, computer: 41, drawing: 37, arabic: 43, agriculture: 42 }, midterm: {} } },
+    { id: uid(), grNumber: "279", name: "Muhammad Hayyat", fatherName: "Mehar Charan", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 10, math: 25, gscience: 8, sst: 20, islamiat: 33, sindhi: 33, urdu: 40, computer: 31, drawing: 31, arabic: 29, agriculture: 35 }, midterm: {} } },
+    { id: uid(), grNumber: "280", name: "Naveed", fatherName: "Abdul Majeed Jat", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 35, math: 33, gscience: 18, sst: 40, islamiat: 48, sindhi: 60, urdu: 40, computer: 39, drawing: 43, arabic: 45, agriculture: 49 }, midterm: {} } },
+    { id: uid(), grNumber: "281", name: "Yasir Hussain", fatherName: "Muhammad Essa Baloch", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 28, math: 31, gscience: 53, sst: 26, islamiat: 44, sindhi: 44, urdu: null, computer: 45, drawing: 47, arabic: 44, agriculture: 45 }, midterm: {} } },
+    { id: uid(), grNumber: "282", name: "Imdad Hussain", fatherName: "Muhammad Essa Baloch", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 30, math: 32, gscience: 22, sst: 26, islamiat: 43, sindhi: 49, urdu: 43, computer: 35, drawing: 35, arabic: 46, agriculture: 39 }, midterm: {} } },
+    { id: uid(), grNumber: "283", name: "Hamidullah", fatherName: "Muhammad Juman Baloch", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 33, math: 58, gscience: 36, sst: 40, islamiat: 69, sindhi: 43, urdu: null, computer: 49, drawing: 54, arabic: 57, agriculture: 62 }, midterm: {} } },
+    { id: uid(), grNumber: "284", name: "Qayoom", fatherName: "Ayoub Khaskheli", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 36, math: 30, gscience: 10, sst: 28, islamiat: 33, sindhi: 54, urdu: 50, computer: 37, drawing: 41, arabic: 42, agriculture: 48 }, midterm: {} } },
+    { id: uid(), grNumber: "285", name: "Abdul Azeem", fatherName: "Abdul Kareem Khaskheli", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 15, math: 25, gscience: 5, sst: 25, islamiat: 52, sindhi: 44, urdu: 50, computer: 39, drawing: 36, arabic: 42, agriculture: 41 }, midterm: {} } },
+    { id: uid(), grNumber: "286", name: "Nazeer", fatherName: "Ghulam Mustafa Jat", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: null, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "287", name: "Mehraj Ali", fatherName: "Sikandar Ali Khaskheli", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 25, math: 20, gscience: 4, sst: 25, islamiat: 45, sindhi: 33, urdu: 50, computer: 36, drawing: 37, arabic: 37, agriculture: 38 }, midterm: {} } },
+    { id: uid(), grNumber: "288", name: "Sanaullah", fatherName: "Habibullah Janyaro", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: null, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "289", name: "Kashif Ali", fatherName: "Adam Janyaro", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: null, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "291", name: "Fazal Jan", fatherName: "Juman Memon", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 22, math: 43, gscience: 42, sst: 28, islamiat: 41, sindhi: 40, urdu: 50, computer: 40, drawing: 50, arabic: 44, agriculture: 52 }, midterm: {} } },
+    { id: uid(), grNumber: "292", name: "Abdul Hafeez", fatherName: "Abdul Majeed Memon", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 40, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "293", name: "Ubaid Raza", fatherName: "Muhammad Khan Memon", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 14, math: 30, gscience: 10, sst: 34, islamiat: 65, sindhi: 54, urdu: 60, computer: 42, drawing: 43, arabic: 45, agriculture: 58 }, midterm: {} } },
+    { id: uid(), grNumber: "294", name: "Noor Ul Hassan", fatherName: "Yaqoob Maganhar", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 21, math: 26, gscience: 12, sst: 34, islamiat: 33, sindhi: 40, urdu: 50, computer: 31, drawing: 39, arabic: 40, agriculture: 45 }, midterm: {} } },
+    { id: uid(), grNumber: "295", name: "Muhammad Yaqoob", fatherName: "Muhammad Siddique Memon", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 12, math: 33, gscience: 44, sst: 34, islamiat: 50, sindhi: 54, urdu: 56, computer: 41, drawing: 50, arabic: 56, agriculture: 53 }, midterm: {} } },
+    { id: uid(), grNumber: "296", name: "Naveed Ali", fatherName: "Muhammad Uris Ghoto", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 66, math: 58, gscience: 73, sst: 84, islamiat: 75, sindhi: 53, urdu: 75, computer: 74, drawing: 79, arabic: 76, agriculture: 76 }, midterm: {} } },
+    { id: uid(), grNumber: "297", name: "Anees Ahmed", fatherName: "Abdul Hameed Memon", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 20, math: 36, gscience: 2, sst: 26, islamiat: 43, sindhi: 38, urdu: 40, computer: 32, drawing: 37, arabic: 31, agriculture: 43 }, midterm: {} } },
+    { id: uid(), grNumber: "298", name: "Niaz Ahmed", fatherName: "Muhammad Uris Memon", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 5, math: 35, gscience: 8, sst: 21, islamiat: 39, sindhi: 39, urdu: 40, computer: 30, drawing: 39, arabic: 35, agriculture: 36 }, midterm: {} } },
+    { id: uid(), grNumber: "299", name: "Farhan Ali", fatherName: "Ghulam Nabi Memon", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 5, math: 25, gscience: 8, sst: 26, islamiat: 48, sindhi: 37, urdu: 46, computer: 35, drawing: 37, arabic: 41, agriculture: 46 }, midterm: {} } },
+    { id: uid(), grNumber: "300", name: "Shahzad Ahmed", fatherName: "Shahid Memon", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 15, math: 33, gscience: 50, sst: 48, islamiat: 37, sindhi: 47, urdu: 47, computer: 39, drawing: 46, arabic: 45, agriculture: 48 }, midterm: {} } },
+    { id: uid(), grNumber: "305", name: "Dilbar Khan", fatherName: "Shah Murad Rind Baloch", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 5, math: 27, gscience: 4, sst: 15, islamiat: 19, sindhi: 51, urdu: 40, computer: 22, drawing: 25, arabic: 30, agriculture: 31 }, midterm: {} } },
+    { id: uid(), grNumber: "306", name: "Adam", fatherName: "Ahmed Katyar", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 55, math: 30, gscience: 35, sst: 48, islamiat: 63, sindhi: 72, urdu: 70, computer: 59, drawing: 57, arabic: 64, agriculture: 64 }, midterm: {} } },
+    { id: uid(), grNumber: "308", name: "Sabir Ahmed", fatherName: "Muhammad Bux Rind Baloch", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 20, math: 32, gscience: 5, sst: 21, islamiat: 33, sindhi: 56, urdu: 40, computer: 30, drawing: 33, arabic: 36, agriculture: 38 }, midterm: {} } },
+    { id: uid(), grNumber: "309", name: "Amir Khan", fatherName: "Huzoor Bux Rind Baloch", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 5, math: 30, gscience: 8, sst: 12, islamiat: 15, sindhi: 53, urdu: 40, computer: 24, drawing: 29, arabic: 25, agriculture: 38 }, midterm: {} } },
+    { id: uid(), grNumber: "310", name: "Bilawal", fatherName: "Murad Rind Baloch", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 8, math: 40, gscience: 5, sst: 18, islamiat: 26, sindhi: 57, urdu: 40, computer: 36, drawing: 37, arabic: 31, agriculture: 39 }, midterm: {} } },
+    { id: uid(), grNumber: "311", name: "Sajid Ali", fatherName: "Muhammad Qasim Katyar", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: null, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "312", name: "Danish", fatherName: "Ghulam Baloch", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 30, math: 30, gscience: 33, sst: 25, islamiat: 57, sindhi: 52, urdu: 50, computer: 41, drawing: 50, arabic: 45, agriculture: 54 }, midterm: {} } },
+    { id: uid(), grNumber: "313", name: "Sameer Ahmed", fatherName: "Mian Bux Rind Baloch", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 15, math: 40, gscience: 4, sst: 26, islamiat: 38, sindhi: 58, urdu: 40, computer: 41, drawing: 43, arabic: 37, agriculture: 48 }, midterm: {} } },
+    { id: uid(), grNumber: "314", name: "Bilawal", fatherName: "Shams Ud Din Rind Baloch", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 5, math: 25, gscience: 5, sst: 18, islamiat: 25, sindhi: 54, urdu: 40, computer: 30, drawing: 29, arabic: 35, agriculture: 39 }, midterm: {} } },
+    { id: uid(), grNumber: "315", name: "Zahid", fatherName: "Muhammad Hanif Jat", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 20, math: 30, gscience: 33, sst: 46, islamiat: 48, sindhi: 41, urdu: 47, computer: 43, drawing: 46, arabic: 46, agriculture: 50 }, midterm: {} } },
+    { id: uid(), grNumber: "316", name: "Anees", fatherName: "Muhammad Hanif Jat", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: null, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "317", name: "Faiz Muhammad", fatherName: "Zaman Jat", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: null, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "318", name: "Abdul Latif", fatherName: "Allah Dad Rind Baloch", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 15, math: 26, gscience: 15, sst: 20, islamiat: 33, sindhi: 59, urdu: 40, computer: 33, drawing: 36, arabic: 41, agriculture: 46 }, midterm: {} } },
+    { id: uid(), grNumber: "319", name: "Shoeb Ahmed", fatherName: "Saleh Muhammad Rind Baloch", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: null, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "320", name: "Feroz Ali", fatherName: "Ali Nawaz Memon", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 6, math: 30, gscience: 8, sst: 34, islamiat: 33, sindhi: 33, urdu: 40, computer: 28, drawing: 29, arabic: 39, agriculture: 36 }, midterm: {} } },
+    { id: uid(), grNumber: "321", name: "Shakir Ali", fatherName: "Mohammad Bux Rind Baloch", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 10, math: 32, gscience: 18, sst: 17, islamiat: 33, sindhi: 69, urdu: 40, computer: 40, drawing: 44, arabic: 46, agriculture: 41 }, midterm: {} } },
+    { id: uid(), grNumber: "322", name: "Abdul Hafeez", fatherName: "Abdul Qadir Shoro", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 2, math: 26, gscience: 2, sst: 25, islamiat: null, sindhi: 35, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "323", name: "Iqbal", fatherName: "Ahmed Charan", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: null, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "324", name: "Noor Khan", fatherName: "Gulsher Rind Baloch", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 8, math: 36, gscience: 4, sst: 15, islamiat: 21, sindhi: 40, urdu: null, computer: 27, drawing: 24, arabic: 32, agriculture: 35 }, midterm: {} } },
+    { id: uid(), grNumber: "327", name: "Azra", fatherName: "Muhammad Khamiso Memon", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: null, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "328", name: "Sanaullah", fatherName: "Aftab Ahmed Khatti", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 40, math: 64, gscience: 15, sst: 33, islamiat: 51, sindhi: 54, urdu: 60, computer: 46, drawing: 56, arabic: 52, agriculture: 54 }, midterm: {} } },
+    { id: uid(), grNumber: "329", name: "Wazeer Ahmed", fatherName: "Abdul Aziz Memon", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 15, math: 30, gscience: 8, sst: 50, islamiat: 56, sindhi: 33, urdu: 60, computer: 36, drawing: 47, arabic: 41, agriculture: 52 }, midterm: {} } },
+    { id: uid(), grNumber: "330", name: "Basheer Ahmed", fatherName: "Wazeer Ali Mir Talpur", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: null, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "331", name: "Imran Ahmed", fatherName: "Ali Muhammad Memon", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 34, math: 30, gscience: 14, sst: 35, islamiat: 46, sindhi: 64, urdu: 60, computer: 45, drawing: 49, arabic: 53, agriculture: 53 }, midterm: {} } },
+    { id: uid(), grNumber: "332", name: "Imtiaz Ali", fatherName: "Muhammad Ramzan Khaskheli", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 33, math: 38, gscience: 8, sst: 39, islamiat: 43, sindhi: 33, urdu: 50, computer: 38, drawing: 35, arabic: 36, agriculture: 44 }, midterm: {} } },
+    { id: uid(), grNumber: "403", name: "Tariq Ahmed", fatherName: "Faisal Memon", class: "VII", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 78, math: 78, gscience: 77, sst: 61, islamiat: 80, sindhi: 64, urdu: 70, computer: 76, drawing: 72, arabic: 78, agriculture: 80 }, midterm: {} } },
+    { id: uid(), grNumber: "334", name: "Haji", fatherName: "Lal Bux Lashari", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 30, math: 39, gscience: 33, sst: 44, islamiat: 40, sindhi: 43, urdu: 50, computer: 43, drawing: 47, arabic: 48, agriculture: 54 }, midterm: {} } },
+    { id: uid(), grNumber: "335", name: "Zain Ul Abden", fatherName: "Khair Muhammad Lashari", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 30, math: 45, gscience: 33, sst: 50, islamiat: 40, sindhi: 47, urdu: 50, computer: 51, drawing: 54, arabic: 46, agriculture: 54 }, midterm: {} } },
+    { id: uid(), grNumber: "337", name: "Allah Bux", fatherName: "Peer Bux Lashari", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 30, math: 30, gscience: 33, sst: 35, islamiat: 33, sindhi: 33, urdu: 45, computer: 36, drawing: 38, arabic: 36, agriculture: 46 }, midterm: {} } },
+    { id: uid(), grNumber: "338", name: "Muhammad Ali", fatherName: "Ahmed Ali Khaskheli", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 32, math: 41, gscience: 33, sst: 65, islamiat: 45, sindhi: 70, urdu: 50, computer: 52, drawing: 51, arabic: 57, agriculture: 64 }, midterm: {} } },
+    { id: uid(), grNumber: "339", name: "Umed Ali", fatherName: "Ahmed Ali Khaskheli", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 32, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "340", name: "Muhammad Azeem", fatherName: "Muharram Khaskheli", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 33, math: 43, gscience: 33, sst: 60, islamiat: 45, sindhi: 79, urdu: 45, computer: 53, drawing: 53, arabic: 52, agriculture: 61 }, midterm: {} } },
+    { id: uid(), grNumber: "341", name: "Ghulam Nabi", fatherName: "Ghulam Hussain Samoon", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 45, math: 38, gscience: 33, sst: 55, islamiat: 60, sindhi: 59, urdu: 56, computer: 53, drawing: 60, arabic: 60, agriculture: 65 }, midterm: {} } },
+    { id: uid(), grNumber: "342", name: "Zain Ul Abideen", fatherName: "Muhammad Hussain Samoon", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 70, math: 35, gscience: 34, sst: 63, islamiat: 75, sindhi: 77, urdu: 70, computer: 59, drawing: 69, arabic: 68, agriculture: 75 }, midterm: {} } },
+    { id: uid(), grNumber: "343", name: "Hasnain", fatherName: "Muhammad Hussain Samoon", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 75, math: 43, gscience: 43, sst: 63, islamiat: 75, sindhi: 71, urdu: 75, computer: 62, drawing: 68, arabic: 72, agriculture: 72 }, midterm: {} } },
+    { id: uid(), grNumber: "344", name: "Jabir Ali", fatherName: "Jaffar Kapurani", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 35, math: 37, gscience: 33, sst: 40, islamiat: 33, sindhi: 33, urdu: 45, computer: 46, drawing: 42, arabic: 40, agriculture: 50 }, midterm: {} } },
+    { id: uid(), grNumber: "345", name: "Shahbaz", fatherName: "Ali Abbas Mallah", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 35, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: 46, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "346", name: "Abdul Hafeez", fatherName: "Zainal Kapurani Baloch", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 35, math: 40, gscience: 46, sst: 40, islamiat: 35, sindhi: 37, urdu: 40, computer: 43, drawing: 47, arabic: 47, agriculture: 49 }, midterm: {} } },
+    { id: uid(), grNumber: "347", name: "Muhammad Iqbal", fatherName: "Zainal Kapurani Baloch", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 36, math: 45, gscience: 45, sst: 71, islamiat: 55, sindhi: 33, urdu: 60, computer: 52, drawing: 57, arabic: 55, agriculture: 62 }, midterm: {} } },
+    { id: uid(), grNumber: "348", name: "Shahida", fatherName: "Zain Ul Abden Ratto", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: null, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "349", name: "Ikhtiar Ali", fatherName: "Muhammad Hanif Ghoto", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 36, math: 47, gscience: 64, sst: 46, islamiat: 60, sindhi: 55, urdu: 50, computer: 57, drawing: 60, arabic: 63, agriculture: 63 }, midterm: {} } },
+    { id: uid(), grNumber: "350", name: "Muhammad Akram", fatherName: "Jameel Ahmed Wadhelo Baloch", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 30, math: 33, gscience: 50, sst: 45, islamiat: 50, sindhi: 51, urdu: 46, computer: 49, drawing: 55, arabic: 56, agriculture: 54 }, midterm: {} } },
+    { id: uid(), grNumber: "351", name: "Jalal", fatherName: "Ghulam Muhammad Mallah", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: null, math: null, gscience: null, sst: 41, islamiat: null, sindhi: 33, urdu: 40, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "352", name: "Babar", fatherName: "Bakhusho Lashari Baloch", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 30, math: 42, gscience: 16, sst: 33, islamiat: 50, sindhi: 37, urdu: 48, computer: 43, drawing: 39, arabic: 42, agriculture: 51 }, midterm: {} } },
+    { id: uid(), grNumber: "353", name: "Azhar Ali", fatherName: "Ali Muhammad Baloch", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 35, math: 35, gscience: 50, sst: 68, islamiat: 50, sindhi: 70, urdu: 48, computer: 60, drawing: 60, arabic: 61, agriculture: 69 }, midterm: {} } },
+    { id: uid(), grNumber: "354", name: "Naseema", fatherName: "Alam Baloch", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 50, math: 35, gscience: 33, sst: 45, islamiat: 50, sindhi: 52, urdu: 60, computer: 46, drawing: 51, arabic: 56, agriculture: 55 }, midterm: {} } },
+    { id: uid(), grNumber: "355", name: "Maira", fatherName: "Rasool Bux Baloch", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 40, math: 35, gscience: 33, sst: 41, islamiat: 33, sindhi: 58, urdu: 60, computer: 46, drawing: 46, arabic: 52, agriculture: 58 }, midterm: {} } },
+    { id: uid(), grNumber: "356", name: "Muhammad Hanif", fatherName: "Hussain Bux Rind", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 35, math: 20, gscience: 6, sst: 34, islamiat: 15, sindhi: 37, urdu: 40, computer: 32, drawing: 28, arabic: 27, agriculture: 31 }, midterm: {} } },
+    { id: uid(), grNumber: "357", name: "Nazeer Ahmed", fatherName: "Mughal Azam Rind", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 30, math: 33, gscience: 4, sst: 34, islamiat: 20, sindhi: 44, urdu: 42, computer: 39, drawing: 31, arabic: 37, agriculture: 37 }, midterm: {} } },
+    { id: uid(), grNumber: "358", name: "Shahzeb", fatherName: "Noor Ahmed Baloch", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 30, math: 57, gscience: 33, sst: 33, islamiat: 55, sindhi: 40, urdu: 75, computer: 48, drawing: 49, arabic: 50, agriculture: 57 }, midterm: {} } },
+    { id: uid(), grNumber: "359", name: "Ghulam Abbas", fatherName: "Ghulam Nabi Katyar", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 45, math: 60, gscience: 52, sst: 35, islamiat: 70, sindhi: 39, urdu: 76, computer: 55, drawing: 59, arabic: 57, agriculture: 56 }, midterm: {} } },
+    { id: uid(), grNumber: "360", name: "Abu Bakar", fatherName: "Qadir Bux Sholani", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 48, math: 37, gscience: 45, sst: 34, islamiat: 60, sindhi: 40, urdu: 50, computer: 54, drawing: 51, arabic: 49, agriculture: 54 }, midterm: {} } },
+    { id: uid(), grNumber: "361", name: "Shawaiz", fatherName: "Allah Dino Sholani", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 48, math: 35, gscience: 33, sst: 60, islamiat: 72, sindhi: 54, urdu: 56, computer: 52, drawing: 55, arabic: 62, agriculture: 62 }, midterm: {} } },
+    { id: uid(), grNumber: "362", name: "Ghulam Mustafa", fatherName: "Muhammad Juman Mirbahar", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: null, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "363", name: "Naseer Ahmed", fatherName: "Ahmed Khaskheli", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 35, math: 53, gscience: 33, sst: 60, islamiat: null, sindhi: 57, urdu: 60, computer: 52, drawing: 59, arabic: 53, agriculture: 60 }, midterm: {} } },
+    { id: uid(), grNumber: "364", name: "Mubarak Ali", fatherName: "Younis Khaskheli", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 65, math: 64, gscience: 50, sst: 52, islamiat: 80, sindhi: 75, urdu: 77, computer: 67, drawing: 75, arabic: 73, agriculture: 77 }, midterm: {} } },
+    { id: uid(), grNumber: "365", name: "Naseer Ahmed", fatherName: "Younis Mallah", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 40, math: 41, gscience: 5, sst: 40, islamiat: 40, sindhi: 33, urdu: 42, computer: 40, drawing: 37, arabic: 33, agriculture: 45 }, midterm: {} } },
+    { id: uid(), grNumber: "368", name: "Aleeza", fatherName: "Abu Talib Memon", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 40, math: 55, gscience: 53, sst: 35, islamiat: 50, sindhi: 46, urdu: 47, computer: 52, drawing: 57, arabic: 58, agriculture: 58 }, midterm: {} } },
+    { id: uid(), grNumber: "369", name: "Abdul Jaleel", fatherName: "Abdul Aziz Lashari", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 40, math: 42, gscience: 49, sst: 58, islamiat: 51, sindhi: 37, urdu: 41, computer: 45, drawing: 61, arabic: 52, agriculture: 45 }, midterm: {} } },
+    { id: uid(), grNumber: "370", name: "Muhammad Hussain", fatherName: "Haji Katyar", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 45, math: 44, gscience: 10, sst: 67, islamiat: 55, sindhi: 63, urdu: 40, computer: 53, drawing: 54, arabic: 54, agriculture: 55 }, midterm: {} } },
+    { id: uid(), grNumber: "371", name: "Hakim", fatherName: "Muhammad Ismail Baloch", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 30, math: 45, gscience: 40, sst: 43, islamiat: 60, sindhi: 33, urdu: 66, computer: 56, drawing: 55, arabic: 56, agriculture: 57 }, midterm: {} } },
+    { id: uid(), grNumber: "373", name: "Seema", fatherName: "Ali Nawaz Khalifo", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 60, math: 45, gscience: 60, sst: 58, islamiat: 71, sindhi: 65, urdu: 76, computer: 68, drawing: 70, arabic: 72, agriculture: 72 }, midterm: {} } },
+    { id: uid(), grNumber: "375", name: "Imran Ali", fatherName: "Mamtaz Ali Memon", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 35, math: 34, gscience: 33, sst: 38, islamiat: 50, sindhi: 46, urdu: 60, computer: 43, drawing: 53, arabic: 49, agriculture: 53 }, midterm: {} } },
+    { id: uid(), grNumber: "376", name: "Abu", fatherName: "Fateh Muhammad Lashari", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 35, math: 41, gscience: 8, sst: 61, islamiat: 33, sindhi: 57, urdu: 57, computer: 42, drawing: 48, arabic: 52, agriculture: 54 }, midterm: {} } },
+    { id: uid(), grNumber: "377", name: "Ahsan Ali", fatherName: "Muhammad Hussain Memon", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 35, math: 35, gscience: 8, sst: 64, islamiat: 45, sindhi: 44, urdu: 46, computer: 48, drawing: 50, arabic: 50, agriculture: 54 }, midterm: {} } },
+    { id: uid(), grNumber: "378", name: "Gul Bano", fatherName: "Abu Al Hassan Memon", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 35, math: 45, gscience: 33, sst: 50, islamiat: 45, sindhi: 45, urdu: 47, computer: 53, drawing: 49, arabic: 48, agriculture: 54 }, midterm: {} } },
+    { id: uid(), grNumber: "379", name: "Azeem", fatherName: "Ali Jat", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 35, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "380", name: "Ameer Ahmed", fatherName: "Ghulam Jat", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 35, math: 55, gscience: 35, sst: 45, islamiat: 45, sindhi: 66, urdu: 50, computer: 57, drawing: 53, arabic: 50, agriculture: 56 }, midterm: {} } },
+    { id: uid(), grNumber: "381", name: "Ameer Hamza", fatherName: "Sikandar Ali Khaskheli", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 33, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "382", name: "Riaz", fatherName: "Aslam Khaskheli", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 35, math: 44, gscience: 35, sst: 68, islamiat: 70, sindhi: 56, urdu: 70, computer: 66, drawing: 65, arabic: 71, agriculture: 70 }, midterm: {} } },
+    { id: uid(), grNumber: "383", name: "Haji", fatherName: "Ismail Jat", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 36, math: 30, gscience: 5, sst: 33, islamiat: 33, sindhi: 40, urdu: 40, computer: 37, drawing: 37, arabic: 42, agriculture: 47 }, midterm: {} } },
+    { id: uid(), grNumber: "384", name: "Abdul Wahid", fatherName: "Fateh Khan Jat", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 37, math: 38, gscience: 33, sst: 58, islamiat: 33, sindhi: 63, urdu: 40, computer: 47, drawing: 52, arabic: 50, agriculture: 58 }, midterm: {} } },
+    { id: uid(), grNumber: "385", name: "Atif Ali", fatherName: "Muhammad Rafiue Bhatti", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 30, math: 27, gscience: 18, sst: 32, islamiat: 33, sindhi: 33, urdu: 40, computer: 31, drawing: 37, arabic: 34, agriculture: 38 }, midterm: {} } },
+    { id: uid(), grNumber: "387", name: "Afzal", fatherName: "Gul Hassan Mallah", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: null, math: null, gscience: null, sst: 13, islamiat: 28, sindhi: 33, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "388", name: "Manzoor Ahmed", fatherName: "Muhammad Qasim Lashari", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 33, math: 30, gscience: 33, sst: 34, islamiat: 33, sindhi: 36, urdu: 50, computer: 42, drawing: 40, arabic: 38, agriculture: 42 }, midterm: {} } },
+    { id: uid(), grNumber: "389", name: "Mazar", fatherName: "Uris Lashari", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 28, math: 32, gscience: 8, sst: 35, islamiat: 33, sindhi: 38, urdu: 50, computer: 35, drawing: 35, arabic: 33, agriculture: 47 }, midterm: {} } },
+    { id: uid(), grNumber: "390", name: "Seema", fatherName: "Jummon Baloch", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 45, math: 40, gscience: 34, sst: 45, islamiat: 45, sindhi: 40, urdu: 60, computer: 53, drawing: 47, arabic: 48, agriculture: 51 }, midterm: {} } },
+    { id: uid(), grNumber: "391", name: "Shahzad Ali", fatherName: "Sikandar Doki", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 35, math: 29, gscience: 35, sst: 37, islamiat: 40, sindhi: 56, urdu: 50, computer: 50, drawing: 51, arabic: 45, agriculture: 51 }, midterm: {} } },
+    { id: uid(), grNumber: "392", name: "Idrees", fatherName: "Muhammad Hanif Jat", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 30, math: 37, gscience: 10, sst: 35, islamiat: 33, sindhi: 36, urdu: 40, computer: 40, drawing: 34, arabic: 34, agriculture: 38 }, midterm: {} } },
+    { id: uid(), grNumber: "393", name: "Shahbaz Ali", fatherName: "Makoo Lashari", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 35, math: 57, gscience: 34, sst: 41, islamiat: 65, sindhi: 67, urdu: 40, computer: 60, drawing: 55, arabic: 60, agriculture: 55 }, midterm: {} } },
+    { id: uid(), grNumber: "394", name: "Irfan Ali", fatherName: "Muhammad Yousif Sholani", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 40, math: 29, gscience: 8, sst: 50, islamiat: 65, sindhi: 55, urdu: 40, computer: 48, drawing: 47, arabic: 51, agriculture: 57 }, midterm: {} } },
+    { id: uid(), grNumber: "395", name: "Akhtar", fatherName: "Ghulam Asghar Gabol", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 35, math: 31, gscience: 14, sst: 34, islamiat: 35, sindhi: 39, urdu: 40, computer: 37, drawing: 36, arabic: 34, agriculture: 45 }, midterm: {} } },
+    { id: uid(), grNumber: "396", name: "Murad Ali", fatherName: "Abdul Ghafoor Kunbhar", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 35, math: 41, gscience: 15, sst: 36, islamiat: 41, sindhi: 33, urdu: 40, computer: 43, drawing: 43, arabic: 39, agriculture: 40 }, midterm: {} } },
+    { id: uid(), grNumber: "397", name: "Muhammad Ishaque", fatherName: "Ameer Bux Lashari", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 33, math: 27, gscience: 5, sst: 33, islamiat: 33, sindhi: 34, urdu: 42, computer: 36, drawing: 38, arabic: 35, agriculture: 36 }, midterm: {} } },
+    { id: uid(), grNumber: "398", name: "Shazan", fatherName: "Muhammad Usman Memon", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 40, math: 29, gscience: 33, sst: 65, islamiat: 55, sindhi: 46, urdu: 46, computer: 51, drawing: 49, arabic: 54, agriculture: 58 }, midterm: {} } },
+    { id: uid(), grNumber: "399", name: "Hafeez Ahmed", fatherName: "Noor Ahmed Soomro", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 48, math: 47, gscience: 12, sst: 39, islamiat: 50, sindhi: 57, urdu: 40, computer: 48, drawing: 51, arabic: 52, agriculture: 57 }, midterm: {} } },
+    { id: uid(), grNumber: "400", name: "Muqdas", fatherName: "Muhammad Siddique Memon", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: null, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "401", name: "Faraz Ali", fatherName: "Muhammad Juman Memon", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 48, math: 50, gscience: 33, sst: 45, islamiat: 50, sindhi: 59, urdu: 50, computer: 53, drawing: 57, arabic: 50, agriculture: 55 }, midterm: {} } },
+    { id: uid(), grNumber: "402", name: "Faheem Raza", fatherName: "Asadullah Memon", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 35, math: 32, gscience: 12, sst: 36, islamiat: 33, sindhi: 49, urdu: 50, computer: 45, drawing: 36, arabic: 37, agriculture: 44 }, midterm: {} } },
+    { id: uid(), grNumber: "404", name: "Mehtab Ali", fatherName: "Rajab Ali Lashari", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 33, math: 27, gscience: 10, sst: 45, islamiat: 33, sindhi: 44, urdu: 40, computer: 33, drawing: 33, arabic: 37, agriculture: 39 }, midterm: {} } },
+    { id: uid(), grNumber: "405", name: "Javera", fatherName: "Najeebullah Lashari", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: null, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "406", name: "Asifa", fatherName: "Najeebullah Lashari", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: null, math: null, gscience: null, sst: null, islamiat: null, sindhi: null, urdu: null, computer: null, drawing: null, arabic: null, agriculture: null }, midterm: {} } },
+    { id: uid(), grNumber: "407", name: "Kamran Ali", fatherName: "Abdul Ghafoor Memon", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 35, math: 38, gscience: 12, sst: 45, islamiat: 38, sindhi: 34, urdu: 46, computer: 44, drawing: 41, arabic: 43, agriculture: 47 }, midterm: {} } },
+    { id: uid(), grNumber: "408", name: "Ghulam Rasool", fatherName: "Abdul Aziz Memon", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 37, math: 35, gscience: 18, sst: 53, islamiat: 33, sindhi: 33, urdu: 46, computer: 42, drawing: 46, arabic: 48, agriculture: 51 }, midterm: {} } },
+    { id: uid(), grNumber: "409", name: "Tahir Mustafa", fatherName: "Ghulam Mustafa Memon", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 35, math: 37, gscience: 33, sst: 56, islamiat: 46, sindhi: 36, urdu: 50, computer: 51, drawing: 54, arabic: 55, agriculture: 51 }, midterm: {} } },
+    { id: uid(), grNumber: "410", name: "Sajda", fatherName: "Abdul Sattar Baloch", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 45, math: 38, gscience: 33, sst: 40, islamiat: 40, sindhi: 43, urdu: 60, computer: 48, drawing: 47, arabic: 48, agriculture: 55 }, midterm: {} } },
+    { id: uid(), grNumber: "411", name: "Aslam", fatherName: "Lal Muhammed Khaskheli", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 35, math: 30, gscience: 8, sst: 33, islamiat: 33, sindhi: 44, urdu: 46, computer: 34, drawing: 38, arabic: 34, agriculture: 44 }, midterm: {} } },
+    { id: uid(), grNumber: "412", name: "Zubir Ahmed", fatherName: "Muhammad Hanif Katyar", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 45, math: 39, gscience: 33, sst: 38, islamiat: 50, sindhi: 40, urdu: 50, computer: 46, drawing: 49, arabic: 51, agriculture: 48 }, midterm: {} } },
+    { id: uid(), grNumber: "413", name: "Muhammad Sajid", fatherName: "Abdul Majeed Memon", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 40, math: 40, gscience: 10, sst: 14, islamiat: 20, sindhi: 54, urdu: 40, computer: 32, drawing: 39, arabic: 32, agriculture: 35 }, midterm: {} } },
+    { id: uid(), grNumber: "414", name: "Shakeel Ahmed", fatherName: "Ghul Muhammad Memon", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 33, math: 42, gscience: 8, sst: 33, islamiat: 33, sindhi: 45, urdu: 40, computer: 43, drawing: 43, arabic: 35, agriculture: 46 }, midterm: {} } },
+    { id: uid(), grNumber: "415", name: "Irfan Ali", fatherName: "Abdul Ghani Tandio", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 35, math: 27, gscience: 12, sst: 18, islamiat: 33, sindhi: 33, urdu: 46, computer: 38, drawing: 37, arabic: 41, agriculture: 44 }, midterm: {} } },
+    { id: uid(), grNumber: "416", name: "Sameer Ali", fatherName: "Ghulam Muhammad Khaskheli", class: "VI", section: "", dob: "", admissionDate: "", address: "", photoUrl: "", results: { annual: { english: 40, math: 45, gscience: 15, sst: 33, islamiat: 33, sindhi: 37, urdu: 46, computer: 34, drawing: 42, arabic: 43, agriculture: 44 }, midterm: {} } },
+];
+/* ---------- School Leaving Certificate — issued records (year-wise) ----------
+   Har record ek official "General Register" entry hai jo pehle se issue ho chuki
+   hai (jaisa printed Leaving Certificate par darj hota hai). Naya batch/year add
+   karne ke liye neechay mkLC(...) ke naye calls DEFAULT_LC_RECORDS mein add karein,
+   ya App khulnay ke baad Edit Mode se "+ Add Record" button use karein.
+------------------------------------------------------------------------------ */
+function mkLC(gr, name, fatherName, caste, placeOfBirth, dob, dobWords, lastSchool, admissionDate, admittedClass = "VI", opts = {}) {
+    return {
+        id: uid(),
+        grNumber: gr,
+        name,
+        fatherName,
+        religion: opts.religion || "Islam",
+        caste,
+        placeOfBirth,
+        dob,
+        dobWords,
+        lastSchool,
+        admissionDate,
+        admittedClass,
+        progress: opts.progress || "Good",
+        conduct: opts.conduct || "Good",
+        passedClass: opts.passedClass || "VIII",
+        leavingDate: opts.leavingDate || "Mar 29, 2025",
+        reason: opts.reason || "VIII Class Passed",
+        dues: opts.dues || "Nil",
+        remarks: opts.remarks || "L.C Issued",
+        issueDate: opts.issueDate || "Mar 29, 2025",
+        year: opts.year || "2024-2025",
+    };
+}
+const DEFAULT_LC_RECORDS = [
+    mkLC("119", "Gulzar Ali", "Ghulam", "Jat", "Village Misri Jat Ghorabari Thatta", "Jun 08, 2011", "June Eighth, Two Thousand Eleven", "IBF School Hamzo Jat", "Sep 05, 2022"),
+    mkLC("120", "Kashif Ahmed", "Gul Muhammad", "Memon", "R/V Ratol", "Apr 13, 2010", "April Thirteenth, Two Thousand Ten", "GBPS Ratol", "Sep 05, 2022"),
+    mkLC("121", "Rehmatullah", "Ahmed Khan", "Memon", "R/V Ratol", "Jul 27, 2010", "July Twenty-Seventh, Two Thousand Ten", "GBPS Ratol", "Sep 05, 2022"),
+    mkLC("122", "Waqar Ahmed", "Abdullah", "Memon", "Village Khatho", "Jul 03, 1999", "July Third, Nineteen Ninety-Nine", "GBPS Khatho", "Sep 05, 2022"),
+    mkLC("123", "Ali Raza", "Saleh Muhammad", "Lashari Baloch", "Village Umar Khan Lashari Baloch", "Mar 10, 2010", "March Tenth, Two Thousand Ten", "GBPS Raees Meeran Khan Murghar", "Sep 05, 2022"),
+    mkLC("124", "Anwar Ali Shah", "Hussain Shah", "Sayed", "Deh Kheersar", "Feb 04, 2012", "February Fourth, Two Thousand Twelve", "GBPS Garho", "Sep 05, 2022"),
+    mkLC("125", "Ayaz Ali Shah", "Hussain Shah", "Sayed", "Deh Kheersar", "Jul 01, 2010", "July First, Two Thousand Ten", "GBPS Garho", "Sep 05, 2022"),
+    mkLC("129", "Ali Ahmed", "Mehmood", "Jat", "Village Misri Jat Ghorabari", "May 07, 2009", "May Seventh, Two Thousand Nine", "IBF School", "Sep 05, 2022"),
+    mkLC("131", "Ameer Ahmed", "Aboo Jat", "Jat", "Village Muhammad Khan Jat", "Jan 07, 2011", "January Seventh, Two Thousand Eleven", "IBF School", "Sep 05, 2022"),
+    mkLC("132", "Ayaz Ali", "Dawood", "Jat", "Village Muhammad Moosa Jat", "Oct 22, 2010", "October Twenty-Second, Two Thousand Ten", "IBF School", "Sep 05, 2022"),
+    mkLC("133", "Muhammad Nadeem", "Latif Jat", "Jat", "Village Hamzo Jat", "Apr 11, 2011", "April Eleventh, Two Thousand Eleven", "IBF School", "Sep 05, 2022"),
+    mkLC("134", "Piyar Ali", "Muhammad Zakria", "Katiyar", "Village Adam Katiyar", "Jul 23, 2012", "July Twenty-Third, Two Thousand Twelve", "GBPS Adam Katiyar", "Sep 05, 2022"),
+    mkLC("135", "Shawaiz Ali", "Muhammad Yaqoob", "Katiyar", "Village Adam Katiyar", "Aug 22, 2011", "August Twenty-Second, Two Thousand Eleven", "GBPS Adam Katiyar", "Sep 05, 2022"),
+    mkLC("136", "Khadim Hussain", "Adam", "Khaskheli", "Village Muhammad Ismail Sheedi", "Mar 02, 2011", "March Second, Two Thousand Eleven", "GBPS Adam Katiyar", "Sep 05, 2022"),
+    mkLC("138", "Muhammad Areeb", "Zafar Ali Baloch", "Baloch", "R/V Palki", "Jul 26, 2010", "July Twenty-Sixth, Two Thousand Ten", "TCF School Baghan", "Sep 05, 2022"),
+    mkLC("139", "Zulfiqar Ali", "Muzzaffar Ali Baloch", "Baloch", "R/V Palki", "Aug 24, 2010", "August Twenty-Fourth, Two Thousand Ten", "TCF School Baghan", "Sep 05, 2022"),
+    mkLC("140", "Mohammad Yaseen", "Rajo", "Khaskheli", "Village Mohammad Urs Khaskheli", "Mar 25, 2009", "March Twenty-Fifth, Two Thousand Nine", "IBF School", "Sep 05, 2022"),
+    mkLC("141", "Muhammad Asif", "Aachar", "Khaskheli", "Village Urs Khaskheli", "Aug 28, 2012", "August Twenty-Eighth, Two Thousand Twelve", "IBF School", "Sep 05, 2022"),
+    mkLC("142", "Zamin Ali", "Karam Ali", "Lashari", "Deh Achh", "Aug 05, 2010", "August Fifth, Two Thousand Ten", "GBPS Garho", "Sep 05, 2022"),
+    mkLC("144", "Shoib Ali", "Akhtar Hussain", "Perozani", "Village Abdul Majeed Perozani, Ghorabari, Thatta", "Jun 07, 2011", "June Seventh, Two Thousand Eleven", "IBF School Hamzo Jat", "Sep 05, 2022"),
+    mkLC("145", "Muhammad Sharif", "Muhammad Urs", "Shoro", "Ghorabari", "Feb 05, 2010", "February Fifth, Two Thousand Ten", "GBPS Garho", "Sep 05, 2022"),
+    mkLC("146", "Shawaiz", "Ibraheem", "Baloch", "Vil: Muhammad Juman Lashari", "Mar 15, 2010", "March Fifteenth, Two Thousand Ten", "GBPS Muhammad Usman Mirbahar", "Sep 05, 2022"),
+    mkLC("147", "Muhammad Naseem", "Muhammad", "Katiyar", "Vil: Sultan Ahmed Katiyar", "Jan 04, 2011", "January Fourth, Two Thousand Eleven", "GBPS Adam Katiyar", "Sep 05, 2022"),
+    mkLC("148", "Tanveer Ahmed", "Ahmed", "Memon", "Vil: Ahmed Khan Memon", "Mar 03, 2011", "March Third, Two Thousand Eleven", "Gbhs Baghan", "Sep 05, 2022"),
+    mkLC("150", "Sajjad Ali", "Ibraheem", "Sholani", "Vil: Muhammad Ali Sholani", "Oct 20, 2010", "October Twentieth, Two Thousand Ten", "GBPS Adam Katiyar", "Sep 05, 2022"),
+    mkLC("151", "Shahid Ali", "Allah Dino", "Sholani", "Vil: Muhammad Ali Sholani", "Dec 30, 2010", "December Thirtieth, Two Thousand Ten", "GBPS Adam Katiyar", "Sep 05, 2022"),
+    mkLC("152", "Muhammad Saleh", "Muhammad", "Sholani", "Vil: Muhammad Ali Sholani", "Jun 22, 2009", "June Twenty-Second, Two Thousand Nine", "GBPS Adam Katiyar", "Sep 05, 2022"),
+    mkLC("153", "Noor-Ul-Islam", "Dhani Bux", "Sholani", "Vil: Muhammad Ali Sholani", "Mar 20, 2010", "March Twentieth, Two Thousand Ten", "GBPS Adam Katiyar", "Sep 05, 2022"),
+    mkLC("154", "Abdul Jabbar", "Abdul Sattar", "Rajero Baloch", "Vil: Muhammad Essa Baloch", "Feb 09, 2011", "February Ninth, Two Thousand Eleven", "GBPS Muhammad Usman Mirbahar", "Sep 05, 2022"),
+    mkLC("155", "Imran Ali", "Ahmed", "Samoon", "Vil: Muhammad Ismail Samoon", "Aug 07, 2007", "August Seventh, Two Thousand Seven", "GBPS Adam Katiyar", "Sep 05, 2022"),
+    mkLC("156", "Ahsan Ali", "Abdul Rehman", "Samoon", "Vil: Muhammad Ismail Samoon", "May 15, 2008", "May Fifteenth, Two Thousand Eight", "TCF School Garho", "Sep 05, 2022"),
+    mkLC("157", "Ahsan Ali", "Muhammad", "Memon", "Vil: Haji Yaqoob Memon", "Jan 15, 2012", "January Fifteenth, Two Thousand Twelve", "GBPS Khatho", "Oct 17, 2022"),
+    mkLC("158", "Shahzad", "Karo", "Jhalik", "Vil: Mooso Jhalik", "Jan 07, 2010", "January Seventh, Two Thousand Ten", "GPS Umar Khan Kalmati Baloch", "Oct 17, 2022"),
+    mkLC("160", "Jameel Ahmed", "Muhammad Siddique", "Katiyar", "Village M. Ismail Katiyar", "Aug 20, 2010", "August Twentieth, Two Thousand Ten", "GBPS Ismail Katiyar", "Nov 14, 2022"),
+    mkLC("161", "Fahmeeda", "Imam Bux", "Lashari Baloch", "Village Khan Muhammad Baloch", "May 05, 2010", "May Fifth, Two Thousand Ten", "GBPS Arbab Ahmed Soomro", "Nov 14, 2022"),
+    mkLC("162", "Ahmed Raza", "Aijaz Ahmed", "Wadhelo Baloch", "Haji Qasim Wadhelo Baloch", "Mar 07, 2012", "March Seventh, Two Thousand Twelve", "GBPS Qasim Baloch", "Nov 14, 2022"),
+    mkLC("163", "Ali Muhammad", "Imam Bux", "Soomro", "Gul Muhammad Soomro", "Mar 03, 2010", "March Third, Two Thousand Ten", "GBPS Arbab Ahmed Soomro", "Nov 14, 2022"),
+    mkLC("166", "Najeebullah", "Muhammad Khan", "Memon", "Khatho", "Feb 01, 2010", "February First, Two Thousand Ten", "GBPS Khatho", "Nov 14, 2022"),
+    mkLC("167", "Saddam Hussain", "Ghulam Hussain", "Memon", "Khatho", "Jun 02, 2008", "June Second, Two Thousand Eight", "GBPS Khatho", "Nov 14, 2022"),
+    mkLC("168", "Sultan Ahmed", "Abdullah", "Memon", "Khatho", "Mar 23, 2005", "March Twenty-Third, Two Thousand Five", "GBPS Khatho", "Nov 14, 2022"),
+    mkLC("169", "Qamar-Ul-Din", "Shams-Ul-Din", "Wadhelo Baloch", "Haji Qasim Wadhelo Baloch", "Mar 10, 2012", "March Tenth, Two Thousand Twelve", "GBPS Qasim Baloch", "Nov 14, 2022"),
+    mkLC("170", "Muhammad Jan", "Ameer Bux", "Wadhelo Baloch", "Haji Qasim Wadhelo Baloch", "Mar 10, 2012", "March Tenth, Two Thousand Twelve", "GBPS Qasim Baloch", "Nov 14, 2022"),
+    mkLC("171", "Aijaz Ali", "Gulzar Ali", "Jat", "Village Allah Bachayo Jat", "Sep 07, 2008", "September Seventh, Two Thousand Eight", "Mehran Public School System", "Nov 14, 2022"),
+    mkLC("173", "Dilshad", "Ghulam Hussain", "Jat", "Village Allah Bachayo Jat", "Apr 01, 2010", "April First, Two Thousand Ten", "Mehran Public School System", "Nov 14, 2022"),
+    mkLC("174", "Dildar", "Ghulam Hussain", "Jat", "Village Allah Bachayo Jat", "Jun 02, 2008", "June Second, Two Thousand Eight", "Mehran Public School System", "Nov 14, 2022"),
+    mkLC("175", "Usama", "Muhammad Juman", "Memon", "Village Ahmed Khan Memon", "May 13, 2011", "May Thirteenth, Two Thousand Eleven", "GBPS Qadir Dino Memon", "Nov 14, 2022"),
+    mkLC("176", "Muhammad Ramzan", "Haji", "Katiyar", "Village Adam Katiyar", "Aug 25, 2011", "August Twenty-Fifth, Two Thousand Eleven", "GBPS Adam Katiyar", "Nov 14, 2022"),
+    mkLC("177", "Nazeer Ahmed", "Wazeer Ali", "Mir Talpur", "Mir Rab Dino Talpur", "Aug 05, 2008", "August Fifth, Two Thousand Eight", "GBPS Muhammad Dars @ Mir Maqbool Talpur", "Nov 14, 2022"),
+    mkLC("178", "Nasrullah", "Aijaz Ahmed", "Mir Talpur", "Mir Rab Dino Talpur", "Aug 02, 2008", "August Second, Two Thousand Eight", "GBPS Muhammad Dars @ Mir Maqbool Talpur", "Nov 14, 2022"),
+    mkLC("179", "Maqsood Ahmed", "Maqbool Ahmed", "Katiyar", "Village Adam Katiyar", "Jun 18, 2007", "June Eighteenth, Two Thousand Seven", "GBPS Adam Katiyar", "Nov 14, 2022"),
+    mkLC("180", "Abdul Hafeez", "Saddique", "Rind", "Village Muhammad Anwar Rind", "Aug 15, 2008", "August Fifteenth, Two Thousand Eight", "GBPS Lal Muhammad Rind", "Nov 14, 2022"),
+    mkLC("181", "Azhar Hussain", "Ghulam Hussain", "Mallah", "Deh Khalifa", "Feb 03, 2012", "February Third, Two Thousand Twelve", "GBPS Muhammad Ramzan Mallah", "Nov 14, 2022"),
+    mkLC("182", "Sajid Hussain", "Muhammad Moosa", "Rind", "Village Muhammad Anwar Rind", "Aug 15, 2008", "August Fifteenth, Two Thousand Eight", "GBPS Lal Muhammad Rind", "Nov 14, 2022"),
+    mkLC("191", "Tarique", "Abdullah", "Memon", "Khatho", "Jul 16, 2000", "July Sixteenth, Two Thousand", "GBPS Khatho", "Mar 01, 2023"),
+    mkLC("192", "Muzammil Ahmed Shah", "Peer Ghulam Abbas Shah", "Jeelani Peer", "Garho Town", "Jul 23, 2011", "July Twenty-Third, Two Thousand Eleven", "The Achivers School", "Mar 01, 2023"),
+    mkLC("194", "Muhammad Aaryan Yahya", "Dil Nawaz Hakro", "Hakro", "Shikarpur", "Feb 26, 2012", "February Twenty-Sixth, Two Thousand Twelve", "GBPS Muhammad Ali Khosa", "Mar 01, 2023"),
+    mkLC("225", "Bilawal", "Abdul Razzaque", "Morjaryo", "Garho", "Apr 04, 2012", "April Fourth, Two Thousand Twelve", "Maryam Public English High School (Boys & Girls) Latifabad Unit #11 Hyderabad", "Sep 04, 2023", "VII"),
+    mkLC("303", "Haider Ali", "Ali Ahmed", "Jat", "Villae Pariyo Jat, Ghorabari Thatta", "Jul 14, 2009", "July Fourteenth, Two Thousand Nine", "IBFS Hamzo Jat", "Oct 01, 2024", "VIII"),
+    mkLC("325", "Murad Ali", "Ali Hassan", "Jat", "Village Haji Hamzo Jat", "Aug 08, 2011", "August Eighth, Two Thousand Eleven", "Gbhs Baghan", "Oct 10, 2024", "VIII"),
+    mkLC("326", "Abdul Kareem", "Muhammad", "Memon", "Garho", "Mar 27, 2012", "March Twenty-Seventh, Two Thousand Twelve", "TCF Garho Secondary Zubaida Haji Adam Campus Garho", "Oct 10, 2024", "VIII"),
+];
+async function loadShared(key, fallback) {
+    try {
+        const raw = localStorage.getItem("gblss_" + key);
+        return raw ? JSON.parse(raw) : fallback;
+    }
+    catch (_a) {
+        return fallback;
+    }
+}
+async function saveShared(key, value) {
+    try {
+        localStorage.setItem("gblss_" + key, JSON.stringify(value));
+    }
+    catch (e) {
+        console.error("save failed", key, e);
+    }
+}
+function Seal({ size = 96 }) {
+    return (React.createElement("img", { src: SCHOOL_LOGO, alt: "GBLSS Garho official seal", width: size, height: size, style: { width: size, height: size, objectFit: "contain", display: "block" } }));
+}
+function SectionLabel({ n, children }) {
+    return (React.createElement("div", { className: "flex items-center gap-3 mb-6" },
+        React.createElement("span", { className: "flex items-center justify-center rounded-full text-xs font-semibold", style: { width: 26, height: 26, border: "1.5px solid #C9A227", color: "#C9A227", fontFamily: "JetBrains Mono" } }, n),
+        React.createElement("h2", { className: "tracking-wide", style: { fontFamily: "Noto Serif", fontSize: 26, fontWeight: 700, color: "#0F5132" } }, children),
+        React.createElement("div", { className: "flex-1 h-px", style: { background: "#D8CFB8" } })));
+}
+function Field(_a) {
+    var { label } = _a, props = __rest(_a, ["label"]);
+    return (React.createElement("label", { className: "block text-sm mb-3" },
+        React.createElement("span", { className: "block mb-1 font-medium", style: { color: "#4A4237" } }, label),
+        React.createElement("input", Object.assign({}, props, { className: "w-full rounded-md px-3 py-2 text-sm outline-none", style: { border: "1px solid #D8CFB8", background: "#fff", fontFamily: "Inter" } }))));
+}
+function TextAreaField(_a) {
+    var { label } = _a, props = __rest(_a, ["label"]);
+    return (React.createElement("label", { className: "block text-sm mb-3" },
+        React.createElement("span", { className: "block mb-1 font-medium", style: { color: "#4A4237" } }, label),
+        React.createElement("textarea", Object.assign({}, props, { rows: 3, className: "w-full rounded-md px-3 py-2 text-sm outline-none", style: { border: "1px solid #D8CFB8", background: "#fff", fontFamily: "Inter" } }))));
+}
+function Avatar({ url, name, size = 64, square = false }) {
+    const initials = (name || "?").split(" ").map((s) => s[0]).slice(0, 2).join("").toUpperCase();
+    return url ? (React.createElement("img", { src: url, alt: name, style: { width: size, height: size, objectFit: "cover", borderRadius: square ? 6 : "50%", border: "2px solid #0F5132" } })) : (React.createElement("div", { style: {
+            width: size, height: size, borderRadius: square ? 6 : "50%",
+            background: "#0F5132", color: "#FAF6EC", display: "flex", alignItems: "center", justifyContent: "center",
+            fontFamily: "Noto Serif", fontWeight: 700, fontSize: size / 2.6,
+        } }, initials));
+}
+function Modal({ title, onClose, children }) {
+    return (React.createElement("div", { className: "fixed inset-0 z-50 flex items-start md:items-center justify-center p-4 overflow-y-auto", style: { background: "rgba(15,81,50,0.35)" } },
+        React.createElement("div", { className: "w-full max-w-lg rounded-lg shadow-xl my-8", style: { background: "#FAF6EC", border: "1px solid #D8CFB8" } },
+            React.createElement("div", { className: "flex items-center justify-between px-5 py-4", style: { borderBottom: "1px solid #D8CFB8" } },
+                React.createElement("h3", { style: { fontFamily: "Noto Serif", fontWeight: 700, color: "#0F5132", fontSize: 18 } }, title),
+                React.createElement("button", { onClick: onClose, className: "text-sm px-2 py-1 rounded", style: { color: "#4A4237" } }, "\u2715")),
+            React.createElement("div", { className: "p-5" }, children))));
+}
+function Btn(_a) {
+    var { children, variant = "primary" } = _a, props = __rest(_a, ["children", "variant"]);
+    const styles = {
+        primary: { background: "#0F5132", color: "#FAF6EC", border: "1px solid #0F5132" },
+        gold: { background: "#C9A227", color: "#1F2A24", border: "1px solid #C9A227" },
+        ghost: { background: "transparent", color: "#0F5132", border: "1px solid #0F5132" },
+        danger: { background: "transparent", color: "#8B2E2E", border: "1px solid #8B2E2E" },
+    };
+    return (React.createElement("button", Object.assign({}, props, { className: "px-4 py-2 rounded-md text-sm font-semibold transition-opacity hover:opacity-80", style: Object.assign(Object.assign({}, styles[variant]), { fontFamily: "Inter" }) }), children));
+}
+function PublicBanner({ school, subtitle }) {
+    return (React.createElement("div", { className: "rounded-xl overflow-hidden mb-6", style: { background: "#0F5132", borderBottom: "4px solid #C9A227" } },
+        React.createElement("div", { className: "text-center py-9 px-6" },
+            React.createElement("div", { className: "inline-flex items-center justify-center rounded-full mb-3", style: { width: 64, height: 64, border: "2px solid #C9A227" } },
+                React.createElement(Seal, { size: 40 })),
+            React.createElement("h1", { style: { fontFamily: "Noto Serif", fontWeight: 700, fontSize: 24, color: "#FAF6EC" } }, school.name),
+            React.createElement("p", { className: "mt-2 text-xs uppercase", style: { letterSpacing: 2, color: "#FAF6ECb3" } }, subtitle))));
+}
+function LookupCard({ title, children }) {
+    return (React.createElement("div", { className: "rounded-xl p-6 mb-5 max-w-lg mx-auto", style: { border: "1px solid #D8CFB8", background: "#fff", boxShadow: "0 4px 16px rgba(15,81,50,0.08)" } },
+        React.createElement("div", { className: "flex items-center gap-2 mb-5" },
+            React.createElement("span", { style: { width: 8, height: 8, borderRadius: 999, background: "#C9A227", display: "inline-block" } }),
+            React.createElement("h3", { style: { fontFamily: "Noto Serif", fontWeight: 700, fontSize: 18, color: "#0F5132" } }, title)),
+        children));
+}
+function LField({ label, children }) {
+    return (React.createElement("div", { className: "mb-4" },
+        React.createElement("label", { className: "block text-xs font-semibold mb-1.5", style: { color: "#8B8371", letterSpacing: 1 } }, label),
+        children));
+}
+const lInputClass = "w-full px-3 py-2.5 rounded-md text-sm outline-none";
+const lInputStyle = { border: "1px solid #D8CFB8", fontFamily: "Inter" };
+function App() {
+    const [tab, setTab] = useState("home");
+    const [loading, setLoading] = useState(true);
+    const [school, setSchool] = useState(DEFAULT_SCHOOL);
+    const [teachers, setTeachers] = useState([]);
+    const [students, setStudents] = useState([]);
+    const [gallery, setGallery] = useState([]);
+    const [lcRecords, setLcRecords] = useState([]);
+    const [pin, setPin] = useState("1234");
+    const [editMode, setEditMode] = useState(false);
+    const [showPinModal, setShowPinModal] = useState(false);
+    const [pinInput, setPinInput] = useState("");
+    const [pinError, setPinError] = useState("");
+    const [editSchoolOpen, setEditSchoolOpen] = useState(false);
+    const [teacherModal, setTeacherModal] = useState(null); // object being edited or {} for new
+    const [studentModal, setStudentModal] = useState(null);
+    const [galleryModal, setGalleryModal] = useState(null);
+    const [idCardTarget, setIdCardTarget] = useState(null); // {type, person}
+    const [studentFilter, setStudentFilter] = useState("");
+    const [marksModal, setMarksModal] = useState(null); // {student, examType}
+    const [resultClassFilter, setResultClassFilter] = useState("");
+    const [resultExamType, setResultExamType] = useState("annual");
+    const [slcTarget, setSlcTarget] = useState(null); // student for leaving certificate
+    const [lcModal, setLcModal] = useState(null); // record being edited or {} for new
+    const [lcYearFilter, setLcYearFilter] = useState("all");
+    const [showAdminEntry, setShowAdminEntry] = useState(false);
+    useEffect(() => {
+        try {
+            if (window.location.hash && window.location.hash.toLowerCase().includes("admin")) {
+                setShowAdminEntry(true);
+            }
+        }
+        catch (_a) { }
+    }, []);
+    useEffect(() => {
+        (async () => {
+            const [s, t, st, g, lc, p] = await Promise.all([
+                loadShared(SCHOOL_KEY, DEFAULT_SCHOOL),
+                loadShared(TEACHERS_KEY, DEFAULT_TEACHERS),
+                loadShared(STUDENTS_KEY, DEFAULT_STUDENTS),
+                loadShared(GALLERY_KEY, []),
+                loadShared(LC_KEY, DEFAULT_LC_RECORDS),
+                loadShared(PIN_KEY, "1234"),
+            ]);
+            setSchool(s);
+            setTeachers(t);
+            setStudents(st);
+            setGallery(g);
+            setLcRecords(lc);
+            setPin(p);
+            // Persist the seeded teacher list on first run so it's saved for next time too
+            if (!localStorage.getItem("gblss_" + TEACHERS_KEY)) {
+                saveShared(TEACHERS_KEY, t);
+            }
+            if (!localStorage.getItem("gblss_" + STUDENTS_KEY)) {
+                saveShared(STUDENTS_KEY, st);
+            }
+            if (!localStorage.getItem("gblss_" + LC_KEY)) {
+                saveShared(LC_KEY, lc);
+            }
+            setLoading(false);
+        })();
+    }, []);
+    function tryUnlock() {
+        if (pinInput === pin) {
+            setEditMode(true);
+            setShowPinModal(false);
+            setPinInput("");
+            setPinError("");
+        }
+        else {
+            setPinError("Galat PIN. Dobara koshish karein.");
+        }
+    }
+    async function persistSchool(next) { setSchool(next); await saveShared(SCHOOL_KEY, next); }
+    async function persistTeachers(next) { setTeachers(next); await saveShared(TEACHERS_KEY, next); }
+    async function persistStudents(next) { setStudents(next); await saveShared(STUDENTS_KEY, next); }
+    async function persistGallery(next) { setGallery(next); await saveShared(GALLERY_KEY, next); }
+    async function persistLcRecords(next) { setLcRecords(next); await saveShared(LC_KEY, next); }
+    async function persistPin(next) { setPin(next); await saveShared(PIN_KEY, next); }
+    function restoreFromBackup(data) {
+        if (data.school)
+            persistSchool(Object.assign(Object.assign({}, DEFAULT_SCHOOL), data.school));
+        if (Array.isArray(data.teachers))
+            persistTeachers(data.teachers);
+        if (Array.isArray(data.students))
+            persistStudents(data.students);
+        if (Array.isArray(data.gallery))
+            persistGallery(data.gallery);
+        if (Array.isArray(data.lcRecords))
+            persistLcRecords(data.lcRecords);
+        if (data.pin)
+            persistPin(data.pin);
+    }
+    function saveLcRecord(data) {
+        if (data.id)
+            persistLcRecords(lcRecords.map((r) => (r.id === data.id ? data : r)));
+        else
+            persistLcRecords([...lcRecords, mkLC(data.grNumber, data.name, data.fatherName, data.caste, data.placeOfBirth, data.dob, data.dobWords, data.lastSchool, data.admissionDate, data.admittedClass || "VI", { religion: data.religion, progress: data.progress, conduct: data.conduct, passedClass: data.passedClass,
+                    leavingDate: data.leavingDate, reason: data.reason, dues: data.dues, remarks: data.remarks,
+                    issueDate: data.issueDate, year: data.year })]);
+        setLcModal(null);
+    }
+    function saveTeacher(data) {
+        if (data.id)
+            persistTeachers(teachers.map((t) => (t.id === data.id ? data : t)));
+        else
+            persistTeachers([...teachers, Object.assign(Object.assign({}, data), { id: uid() })]);
+        setTeacherModal(null);
+    }
+    function saveStudent(data) {
+        if (data.id)
+            persistStudents(students.map((s) => (s.id === data.id ? data : s)));
+        else
+            persistStudents([...students, Object.assign(Object.assign({}, data), { id: uid() })]);
+        setStudentModal(null);
+    }
+    function saveGalleryItem(data) {
+        if (data.id)
+            persistGallery(gallery.map((g) => (g.id === data.id ? data : g)));
+        else
+            persistGallery([...gallery, Object.assign(Object.assign({}, data), { id: uid() })]);
+        setGalleryModal(null);
+    }
+    function saveMarks(studentId, examType, marks) {
+        persistStudents(students.map((s) => s.id === studentId
+            ? Object.assign(Object.assign({}, s), { results: Object.assign(Object.assign({}, (s.results || {})), { [examType]: marks }) }) : s));
+        setMarksModal(null);
+    }
+    const filteredStudents = students.filter((s) => {
+        var _a, _b, _c, _d;
+        const q = studentFilter.toLowerCase();
+        return !q || ((_a = s.name) === null || _a === void 0 ? void 0 : _a.toLowerCase().includes(q)) || ((_b = s.grNumber) === null || _b === void 0 ? void 0 : _b.toLowerCase().includes(q)) || ((_c = s.class) === null || _c === void 0 ? void 0 : _c.toLowerCase().includes(q)) || ((_d = s.fatherName) === null || _d === void 0 ? void 0 : _d.toLowerCase().includes(q));
+    });
+    if (loading) {
+        return (React.createElement("div", { className: "min-h-screen flex items-center justify-center", style: { background: "#FAF6EC" } },
+            React.createElement("link", { href: FONT_LINK, rel: "stylesheet" }),
+            React.createElement("p", { style: { fontFamily: "Noto Serif", color: "#0F5132" } }, "Loading register\u2026")));
+    }
+    const NAV = [
+        ["home", "Home"],
+        ["about", "School Details"],
+        ["teachers", "Teachers"],
+        ["students", "Register / Students"],
+        ["gallery", "Gallery"],
+        ["ids", "ID Cards"],
+        ["admit", "Admit Card"],
+        ["results", "Result"],
+        ["slc", "Leaving Certificate"],
+    ];
+    return (React.createElement("div", { style: { background: "#FAF6EC", minHeight: "100vh", fontFamily: "Inter", color: "#1F2A24" } },
+        React.createElement("link", { href: FONT_LINK, rel: "stylesheet" }),
+        React.createElement("header", { style: { background: "#0F5132", color: "#FAF6EC" } },
+            React.createElement("div", { className: "max-w-6xl mx-auto px-5 py-3 flex items-center justify-between gap-4" },
+                React.createElement("div", { className: "flex items-center gap-3" },
+                    React.createElement("div", { style: { width: 40, height: 40, flexShrink: 0 } },
+                        React.createElement(Seal, { size: 40 })),
+                    React.createElement("div", null,
+                        React.createElement("div", { style: { fontFamily: "Noto Serif", fontWeight: 700, fontSize: 15, lineHeight: 1.15 } }, school.name),
+                        React.createElement("div", { style: { fontSize: 11, opacity: 0.75, fontFamily: "JetBrains Mono" } }, school.address))),
+                (showAdminEntry || editMode) && (React.createElement("button", { onClick: () => (editMode ? setEditMode(false) : setShowPinModal(true)), className: "text-xs px-3 py-1.5 rounded-full font-semibold flex-shrink-0", style: editMode ? { background: "#C9A227", color: "#1F2A24" } : { border: "1px solid #FAF6EC44", color: "#FAF6EC" } }, editMode ? "✓ Editing — Lock" : "🔒 Edit Mode"))),
+            React.createElement("nav", { className: "max-w-6xl mx-auto px-5 flex gap-1 overflow-x-auto", style: { borderTop: "1px solid #ffffff22" } }, NAV.map(([key, label]) => (React.createElement("button", { key: key, onClick: () => setTab(key), className: "px-3 py-2.5 text-sm whitespace-nowrap font-medium", style: {
+                    borderBottom: tab === key ? "2px solid #C9A227" : "2px solid transparent",
+                    color: tab === key ? "#FAF6EC" : "#FAF6ECAA",
+                } }, label))))),
+        React.createElement("main", { className: "max-w-6xl mx-auto px-5 py-10" },
+            tab === "home" && (React.createElement(HomeTab, { school: school, teachers: teachers, students: students, setTab: setTab })),
+            tab === "about" && (React.createElement(AboutTab, { school: school, editMode: editMode, onEdit: () => setEditSchoolOpen(true), teachers: teachers, students: students, gallery: gallery, lcRecords: lcRecords, pin: pin, onRestore: restoreFromBackup })),
+            tab === "teachers" && (React.createElement(TeachersTab, { teachers: teachers, editMode: editMode, onAdd: () => setTeacherModal({}), onEdit: (t) => setTeacherModal(t), onDelete: (id) => persistTeachers(teachers.filter((t) => t.id !== id)), onIdCard: (t) => { setIdCardTarget({ type: "teacher", person: t }); setTab("ids"); }, school: school })),
+            tab === "students" && (React.createElement(StudentsTab, { students: filteredStudents, allStudents: students, total: students.length, filter: studentFilter, setFilter: setStudentFilter, editMode: editMode, onAdd: () => setStudentModal({}), onEdit: (s) => setStudentModal(s), onDelete: (id) => persistStudents(students.filter((s) => s.id !== id)), onIdCard: (s) => { setIdCardTarget({ type: "student", person: s }); setTab("ids"); }, onMarks: (s) => { setResultClassFilter(s.class || ""); setTab("results"); }, school: school })),
+            tab === "gallery" && (React.createElement(GalleryTab, { gallery: gallery, editMode: editMode, onAdd: () => setGalleryModal({}), onDelete: (id) => persistGallery(gallery.filter((g) => g.id !== id)) })),
+            tab === "ids" && (React.createElement(IdCardsTab, { teachers: teachers, students: students, school: school, target: idCardTarget, setTarget: setIdCardTarget, editMode: editMode })),
+            tab === "admit" && (React.createElement(AdmitCardTab, { school: school, students: students, editMode: editMode })),
+            tab === "results" && (React.createElement(ResultsTab, { students: students, editMode: editMode, classFilter: resultClassFilter, setClassFilter: setResultClassFilter, examType: resultExamType, setExamType: setResultExamType, onEditMarks: (s) => setMarksModal({ student: s, examType: resultExamType }), school: school })),
+            tab === "slc" && (React.createElement(LeavingCertificateTab, { students: students, school: school, target: slcTarget, setTarget: setSlcTarget, lcRecords: lcRecords, editMode: editMode, yearFilter: lcYearFilter, setYearFilter: setLcYearFilter, onAddRecord: () => setLcModal({}), onEditRecord: (r) => setLcModal(r), onDeleteRecord: (id) => persistLcRecords(lcRecords.filter((r) => r.id !== id)) }))),
+        React.createElement("footer", { className: "text-center py-8 text-xs", style: { color: "#8B8371", fontFamily: "JetBrains Mono" } },
+            school.name,
+            " \u2014 records maintained per General Register \u00B7 Edit Mode PIN protects changes only, not a substitute for real security"),
+        showPinModal && (React.createElement(Modal, { title: "Enter Edit PIN", onClose: () => { setShowPinModal(false); setPinInput(""); setPinError(""); } },
+            React.createElement("p", { className: "text-sm mb-3", style: { color: "#4A4237" } },
+                "Default PIN is ",
+                React.createElement("b", null, "1234"),
+                ". Aap ise \"School Details\" edit karte waqt change kar sakte hain."),
+            React.createElement("input", { type: "password", value: pinInput, onChange: (e) => setPinInput(e.target.value), onKeyDown: (e) => e.key === "Enter" && tryUnlock(), placeholder: "PIN", className: "w-full rounded-md px-3 py-2 text-sm mb-2", style: { border: "1px solid #D8CFB8" }, autoFocus: true }),
+            pinError && React.createElement("p", { className: "text-xs mb-2", style: { color: "#8B2E2E" } }, pinError),
+            React.createElement(Btn, { onClick: tryUnlock }, "Unlock"))),
+        editSchoolOpen && (React.createElement(SchoolEditModal, { school: school, pin: pin, onClose: () => setEditSchoolOpen(false), onSave: (s) => { persistSchool(s); setEditSchoolOpen(false); }, onSavePin: persistPin })),
+        teacherModal && (React.createElement(PersonEditModal, { title: teacherModal.id ? "Edit Teacher" : "Add Teacher", onClose: () => setTeacherModal(null), onSave: saveTeacher, initial: teacherModal, fields: [
+                ["name", "Full Name"], ["cnic", "CNIC Number (e.g. 42101-1234567-1)"], ["pid", "PID / Employee Number"],
+                ["dob", "Date of Birth"], ["entryInService", "Entry in Service (e.g. 2010-06-01)"], ["designation", "Designation"],
+                ["schoolName", "School Name"], ["photoUrl", "Photo URL"],
+            ] })),
+        studentModal && (React.createElement(PersonEditModal, { title: studentModal.id ? "Edit Student" : "Add Student", onClose: () => setStudentModal(null), onSave: saveStudent, initial: studentModal, fields: [
+                ["grNumber", "GR Number"], ["name", "Full Name"], ["fatherName", "Father's Name"],
+                ["class", "Class"], ["section", "Section"], ["dob", "Date of Birth"],
+                ["admissionDate", "Admission Date"], ["address", "Address (optional)"], ["photoUrl", "Photo URL"],
+            ] })),
+        galleryModal && (React.createElement(Modal, { title: "Add Photo", onClose: () => setGalleryModal(null) },
+            React.createElement(GalleryForm, { onSave: saveGalleryItem, initial: galleryModal }))),
+        marksModal && (React.createElement(MarksEditModal, { student: marksModal.student, examType: marksModal.examType, onClose: () => setMarksModal(null), onSave: (marks) => saveMarks(marksModal.student.id, marksModal.examType, marks) })),
+        lcModal && (React.createElement(PersonEditModal, { title: lcModal.id ? "Edit Leaving Certificate Record" : "Add Leaving Certificate Record", onClose: () => setLcModal(null), onSave: saveLcRecord, initial: lcModal.id ? lcModal : Object.assign(Object.assign({}, lcModal), { admittedClass: "VI", religion: "Islam", progress: "Good", conduct: "Good", passedClass: "VIII", reason: "VIII Class Passed", dues: "Nil", remarks: "L.C Issued", year: "2024-2025" }), fields: [
+                ["grNumber", "General Register No."], ["name", "Name of Pupil"], ["fatherName", "Father's Name"],
+                ["religion", "Religion"], ["caste", "Race & Caste"], ["placeOfBirth", "Place of Birth"],
+                ["dob", "Date of Birth (e.g. Mar 29, 2025)"], ["dobWords", "Date of Birth in Words"],
+                ["lastSchool", "Last School Attended"], ["admissionDate", "Date of Admission"],
+                ["admittedClass", "Class in which Admitted"], ["progress", "Progress"], ["conduct", "Conduct"],
+                ["passedClass", "Class Studying / Passed"], ["leavingDate", "Date of Leaving School"],
+                ["reason", "Reason of Leaving School"], ["dues", "School Dues (if any)"], ["remarks", "Remarks"],
+                ["issueDate", "Date of Issue"], ["year", "Session / Year (e.g. 2024-2025)"],
+            ] }))));
+}
+/* ---------------- Tabs ---------------- */
+function HomeTab({ school, teachers, students, setTab }) {
+    const stats = [
+        ["Students Enrolled", students.length],
+        ["Teaching Staff", teachers.length],
+        ["Classes", school.totalClasses || "—"],
+        ["Established", school.establishedYear || "—"],
+    ];
+    return (React.createElement("div", null,
+        React.createElement("div", { className: "rounded-xl p-8 md:p-12 mb-10 relative overflow-hidden", style: { background: "#0F5132", color: "#FAF6EC" } },
+            React.createElement("div", { className: "absolute -right-6 -top-6 opacity-20" },
+                React.createElement(Seal, { size: 220 })),
+            React.createElement("p", { style: { fontFamily: "JetBrains Mono", fontSize: 12, letterSpacing: 2, color: "#C9A227" } }, "REGISTER No. 001 \u00B7 GARHO"),
+            React.createElement("h1", { style: { fontFamily: "Noto Serif", fontWeight: 700, fontSize: "clamp(28px,4vw,44px)", maxWidth: 640, marginTop: 8 } }, school.name),
+            React.createElement("p", { className: "mt-3 max-w-xl", style: { color: "#FAF6ECCC" } }, school.motto),
+            React.createElement("div", { className: "flex gap-3 mt-6 flex-wrap" },
+                React.createElement(Btn, { variant: "gold", onClick: () => setTab("students") }, "View Student Register"),
+                React.createElement(Btn, { variant: "ghost", style: { borderColor: "#FAF6EC", color: "#FAF6EC" }, onClick: () => setTab("teachers") }, "Meet the Teachers"))),
+        React.createElement("div", { className: "grid grid-cols-2 md:grid-cols-4 gap-4 mb-10" }, stats.map(([label, val]) => (React.createElement("div", { key: label, className: "rounded-lg p-5 text-center", style: { border: "1px solid #D8CFB8", background: "#fff" } },
+            React.createElement("div", { style: { fontFamily: "Noto Serif", fontWeight: 700, fontSize: 30, color: "#0F5132" } }, val),
+            React.createElement("div", { className: "text-xs mt-1", style: { color: "#4A4237", fontFamily: "JetBrains Mono" } }, label))))),
+        school.principalMessage && (React.createElement("div", { className: "rounded-lg p-6 mb-4 flex gap-4", style: { border: "1px solid #D8CFB8", background: "#fff" } },
+            school.principalPhotoUrl && (React.createElement("img", { src: school.principalPhotoUrl, alt: school.principalName, className: "rounded-full flex-shrink-0", style: { width: 64, height: 64, objectFit: "cover", border: "2px solid #D8CFB8" } })),
+            React.createElement("div", null,
+                React.createElement("p", { style: { fontFamily: "Noto Serif", fontSize: 18, fontStyle: "italic", color: "#1F2A24" } },
+                    "\u201C",
+                    school.principalMessage,
+                    "\u201D"),
+                React.createElement("p", { className: "mt-3 text-sm font-semibold", style: { color: "#0F5132" } },
+                    "\u2014 ",
+                    school.principalName || "Head Master")))),
+        school.teoMessage && (React.createElement("div", { className: "rounded-lg p-6 mb-4 flex gap-4", style: { border: "1px solid #D8CFB8", background: "#fff" } },
+            school.teoPhotoUrl && (React.createElement("img", { src: school.teoPhotoUrl, alt: school.teoName, className: "rounded-full flex-shrink-0", style: { width: 64, height: 64, objectFit: "cover", border: "2px solid #D8CFB8" } })),
+            React.createElement("div", null,
+                React.createElement("p", { style: { fontFamily: "Noto Serif", fontSize: 18, fontStyle: "italic", color: "#1F2A24" } },
+                    "\u201C",
+                    school.teoMessage,
+                    "\u201D"),
+                React.createElement("p", { className: "mt-3 text-sm font-semibold", style: { color: "#0F5132" } },
+                    "\u2014 ",
+                    school.teoName || "Taluka Education Officer")))),
+        school.deoMessage && (React.createElement("div", { className: "rounded-lg p-6 flex gap-4", style: { border: "1px solid #D8CFB8", background: "#fff" } },
+            school.deoPhotoUrl && (React.createElement("img", { src: school.deoPhotoUrl, alt: school.deoName, className: "rounded-full flex-shrink-0", style: { width: 64, height: 64, objectFit: "cover", border: "2px solid #D8CFB8" } })),
+            React.createElement("div", null,
+                React.createElement("p", { style: { fontFamily: "Noto Serif", fontSize: 18, fontStyle: "italic", color: "#1F2A24" } },
+                    "\u201C",
+                    school.deoMessage,
+                    "\u201D"),
+                React.createElement("p", { className: "mt-3 text-sm font-semibold", style: { color: "#0F5132" } },
+                    "\u2014 ",
+                    school.deoName || "District Education Officer"))))));
+}
+function BackupRestorePanel({ school, teachers, students, gallery, lcRecords, pin, onRestore }) {
+    const fileInputRef = useRef(null);
+    const [restoreMsg, setRestoreMsg] = useState("");
+    function downloadBackup() {
+        const payload = { school, teachers, students, gallery, lcRecords, pin, exportedAt: new Date().toISOString() };
+        const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        const dateStr = new Date().toISOString().slice(0, 10);
+        a.href = url;
+        a.download = `gblss-garho-backup-${dateStr}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+    function handleFile(e) {
+        const file = e.target.files && e.target.files[0];
+        if (!file)
+            return;
+        const reader = new FileReader();
+        reader.onload = () => {
+            try {
+                const data = JSON.parse(reader.result);
+                if (!data || typeof data !== "object")
+                    throw new Error("invalid");
+                onRestore(data);
+                setRestoreMsg("✅ Data successfully restore ho gaya!");
+            }
+            catch (err) {
+                setRestoreMsg("❌ Ye file valid backup nahi hai. Dobara try karein.");
+            }
+        };
+        reader.readAsText(file);
+        e.target.value = "";
+    }
+    return (React.createElement("div", { className: "rounded-lg p-6 mt-6", style: { border: "1px solid #D8CFB8", background: "#fff" } },
+        React.createElement("h3", { className: "mb-2", style: { fontFamily: "Noto Serif", fontWeight: 700, fontSize: 18, color: "#0F5132" } }, "Backup & Restore"),
+        React.createElement("p", { className: "text-sm mb-4", style: { color: "#4A4237" } }, "Ye data sirf is browser/phone mein save hai. Waqtan faqtan backup download kar ke rakhein taake data kabhi na khoye."),
+        React.createElement("div", { className: "flex flex-wrap gap-3 items-center" },
+            React.createElement(Btn, { variant: "gold", onClick: downloadBackup }, "\u2B07\uFE0F Download Backup"),
+            React.createElement(Btn, { variant: "ghost", onClick: () => fileInputRef.current && fileInputRef.current.click() }, "\u2B06\uFE0F Restore from Backup"),
+            React.createElement("input", { ref: fileInputRef, type: "file", accept: "application/json", onChange: handleFile, style: { display: "none" } })),
+        restoreMsg && React.createElement("p", { className: "text-sm mt-3", style: { color: restoreMsg.startsWith("✅") ? "#0F5132" : "#8B2E2E" } }, restoreMsg)));
+}
+function AboutTab({ school, editMode, onEdit, teachers, students, gallery, lcRecords, pin, onRestore }) {
+    const rows = [
+        ["School Name", school.name],
+        ["Urdu Name", school.urduName],
+        ["Established", school.establishedYear],
+        ["EMIS Code", school.emisCode],
+        ["Address", school.address],
+        ["Classes Offered", school.totalClasses],
+        ["Shift", school.shifts],
+        ["Head Master", school.principalName],
+    ];
+    const phoneDigits = (school.phone || "").replace(/[^\d+]/g, "");
+    const locQuery = school.mapLocation || school.address;
+    const mapsUrl = locQuery ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(locQuery)}` : null;
+    const mapEmbedUrl = locQuery ? `https://www.google.com/maps?q=${encodeURIComponent(locQuery)}&output=embed` : null;
+    return (React.createElement("div", null,
+        React.createElement("div", { className: "flex items-center justify-between" },
+            React.createElement(SectionLabel, { n: "01" }, "School Details"),
+            editMode && React.createElement(Btn, { onClick: onEdit }, "Edit Details")),
+        React.createElement("div", { className: "rounded-lg overflow-hidden mb-6", style: { border: "1px solid #D8CFB8", background: "#fff" } }, rows.map(([label, val], i) => (React.createElement("div", { key: label, className: "flex px-5 py-3 text-sm", style: { borderBottom: i < rows.length - 1 ? "1px solid #EDE6D6" : "none" } },
+            React.createElement("div", { className: "w-40 flex-shrink-0 font-semibold", style: { color: "#0F5132" } }, label),
+            React.createElement("div", { style: { color: "#1F2A24" } }, val || "—"))))),
+        React.createElement("div", { className: "rounded-lg p-6 mb-6", style: { border: "1px solid #D8CFB8", background: "#fff" } },
+            React.createElement("h3", { className: "mb-4", style: { fontFamily: "Noto Serif", fontWeight: 700, fontSize: 18, color: "#0F5132" } }, "Contact Us"),
+            React.createElement("div", { className: "flex flex-wrap gap-3" },
+                school.phone && (React.createElement("a", { href: `tel:${phoneDigits}`, className: "px-4 py-2.5 rounded-md text-sm font-semibold", style: { background: "#0F5132", color: "#FAF6EC" } },
+                    "\uD83D\uDCDE Call: ",
+                    school.phone)),
+                school.email && (React.createElement("a", { href: `mailto:${school.email}`, className: "px-4 py-2.5 rounded-md text-sm font-semibold", style: { border: "1px solid #0F5132", color: "#0F5132" } },
+                    "\u2709\uFE0F Email: ",
+                    school.email)),
+                mapsUrl && (React.createElement("a", { href: mapsUrl, target: "_blank", rel: "noreferrer", className: "px-4 py-2.5 rounded-md text-sm font-semibold", style: { border: "1px solid #C9A227", color: "#8B7B1E" } }, "\uD83D\uDCCD Get Directions"))),
+            !school.phone && !school.email && !mapsUrl && (React.createElement("p", { className: "text-sm", style: { color: "#8B8371" } }, "Contact details Edit Mode se add karein."))),
+        mapEmbedUrl && (React.createElement("div", { className: "rounded-lg overflow-hidden", style: { border: "1px solid #D8CFB8" } },
+            React.createElement("iframe", { title: "School Location", src: mapEmbedUrl, width: "100%", height: "280", style: { border: 0, display: "block" }, loading: "lazy", referrerPolicy: "no-referrer-when-downgrade" }))),
+        editMode && (React.createElement(BackupRestorePanel, { school: school, teachers: teachers, students: students, gallery: gallery, lcRecords: lcRecords, pin: pin, onRestore: onRestore }))));
+}
+function TeacherCard({ t, editMode, onEdit, onDelete, onIdCard }) {
+    return (React.createElement("div", { className: "rounded-lg p-5", style: { border: "1px solid #D8CFB8", background: "#fff" } },
+        React.createElement("div", { className: "flex gap-3 items-center" },
+            React.createElement(Avatar, { url: t.photoUrl, name: t.name }),
+            React.createElement("div", null,
+                React.createElement("div", { className: "font-semibold", style: { color: "#0F5132", fontFamily: "Noto Serif" } }, t.name || "Unnamed"),
+                React.createElement("div", { className: "text-xs", style: { color: "#4A4237" } }, t.designation))),
+        React.createElement("div", { className: "text-xs mt-3 space-y-1", style: { color: "#4A4237" } },
+            t.dob && React.createElement("div", null,
+                "\uD83C\uDF82 DOB: ",
+                t.dob),
+            t.entryInService && React.createElement("div", null,
+                "\uD83D\uDCC5 Service: ",
+                calcServiceDuration(t.entryInService)),
+            t.schoolName && React.createElement("div", null,
+                "\uD83C\uDFEB ",
+                t.schoolName)),
+        React.createElement("div", { className: "flex gap-2 mt-4" },
+            React.createElement(Btn, { variant: "ghost", onClick: () => onIdCard(t) }, "ID Card"),
+            editMode && React.createElement(Btn, { variant: "ghost", onClick: () => onEdit(t) }, "Edit"),
+            editMode && React.createElement(Btn, { variant: "danger", onClick: () => onDelete(t.id) }, "Delete"))));
+}
+function TeacherPublicCard({ t, onIdCard }) {
+    const [verifyOpen, setVerifyOpen] = useState(false);
+    const [input, setInput] = useState("");
+    const [verified, setVerified] = useState(false);
+    const [error, setError] = useState(false);
+    function verify() {
+        const q = input.trim().replace(/[\s-]/g, "");
+        const cnicMatch = q.length > 0 && (t.cnic || "").replace(/[\s-]/g, "") === q;
+        const pidMatch = q.length > 0 && (t.pid || "").replace(/[\s-]/g, "") === q;
+        if (cnicMatch || pidMatch) {
+            setVerified(true);
+            setError(false);
+        }
+        else
+            setError(true);
+    }
+    return (React.createElement("div", { className: "rounded-lg p-5", style: { border: "1px solid #D8CFB8", background: "#fff" } },
+        React.createElement("div", { className: "flex gap-3 items-center" },
+            React.createElement(Avatar, { url: t.photoUrl, name: t.name }),
+            React.createElement("div", { className: "font-semibold", style: { color: "#0F5132", fontFamily: "Noto Serif" } }, t.name || "Unnamed")),
+        !verified ? (React.createElement("div", { className: "mt-3" }, !verifyOpen ? (React.createElement(Btn, { variant: "ghost", onClick: () => setVerifyOpen(true) }, "View Details")) : (React.createElement("div", null,
+            React.createElement("p", { className: "text-xs mb-2", style: { color: "#4A4237" } }, "Details dekhne ke liye CNIC ya PID darj karein:"),
+            React.createElement("div", { className: "flex gap-2" },
+                React.createElement("input", { value: input, onChange: (e) => setInput(e.target.value), onKeyDown: (e) => e.key === "Enter" && verify(), placeholder: "CNIC / PID", className: "px-2 py-1.5 rounded-md text-xs flex-1", style: { border: "1px solid #D8CFB8" } }),
+                React.createElement(Btn, { onClick: verify }, "Verify")),
+            error && React.createElement("p", { className: "text-xs mt-1", style: { color: "#8B2E2E" } }, "Number match nahi hua."))))) : (React.createElement(React.Fragment, null,
+            React.createElement("div", { className: "text-xs mt-3 space-y-1", style: { color: "#4A4237" } },
+                t.designation && React.createElement("div", null,
+                    "\uD83D\uDCBC ",
+                    t.designation),
+                t.dob && React.createElement("div", null,
+                    "\uD83C\uDF82 DOB: ",
+                    t.dob),
+                t.entryInService && React.createElement("div", null,
+                    "\uD83D\uDCC5 Service: ",
+                    calcServiceDuration(t.entryInService)),
+                t.schoolName && React.createElement("div", null,
+                    "\uD83C\uDFEB ",
+                    t.schoolName)),
+            React.createElement("div", { className: "flex gap-2 mt-4" },
+                React.createElement(Btn, { variant: "ghost", onClick: () => onIdCard(t) }, "ID Card"))))));
+}
+function TeachersTab({ teachers, editMode, onAdd, onEdit, onDelete, onIdCard, school }) {
+    if (!editMode) {
+        return (React.createElement("div", null,
+            React.createElement(PublicBanner, { school: school, subtitle: "Teachers' Biodata \u2014 CNIC / PID Verification" }),
+            teachers.length === 0 ? (React.createElement(EmptyState, { text: "Abhi koi teacher record nahi hai." })) : (React.createElement("div", { className: "grid sm:grid-cols-2 lg:grid-cols-3 gap-4" }, teachers.map((t) => (React.createElement(TeacherPublicCard, { key: t.id, t: t, onIdCard: onIdCard })))))));
+    }
+    return (React.createElement("div", null,
+        React.createElement("div", { className: "flex items-center justify-between" },
+            React.createElement(SectionLabel, { n: "02" }, "Teachers' Biodata"),
+            editMode && React.createElement(Btn, { onClick: onAdd }, "+ Add Teacher")),
+        teachers.length === 0 ? (React.createElement(EmptyState, { text: "Abhi koi teacher record nahi hai. Edit Mode on karke pehla record add karein." })) : (React.createElement("div", { className: "grid sm:grid-cols-2 lg:grid-cols-3 gap-4" }, teachers.map((t) => (React.createElement(TeacherCard, { key: t.id, t: t, editMode: editMode, onEdit: onEdit, onDelete: onDelete, onIdCard: onIdCard })))))));
+}
+function StudentLookupCard({ s, onIdCard, onMarks }) {
+    const rows = [
+        ["GR #", s.grNumber], ["Name", s.name], ["Father's Name", s.fatherName],
+        ["Class", s.class], ["Section", s.section || "—"], ["DOB", s.dob || "—"],
+        ["Admission Date", s.admissionDate || "—"],
+    ];
+    return (React.createElement("div", { className: "rounded-lg overflow-hidden max-w-md", style: { border: "1px solid #D8CFB8", background: "#fff" } },
+        React.createElement("div", { className: "flex items-center gap-3 p-4", style: { borderBottom: "1px solid #EDE6D6" } },
+            React.createElement(Avatar, { url: s.photoUrl, name: s.name, size: 44 }),
+            React.createElement("div", { className: "font-semibold", style: { color: "#0F5132", fontFamily: "Noto Serif" } }, s.name)),
+        rows.map(([label, val]) => (React.createElement("div", { key: label, className: "flex px-4 py-2 text-sm", style: { borderBottom: "1px solid #EDE6D6" } },
+            React.createElement("div", { className: "w-32 flex-shrink-0 font-semibold", style: { color: "#0F5132" } }, label),
+            React.createElement("div", { style: { color: "#1F2A24" } }, val)))),
+        React.createElement("div", { className: "flex gap-2 p-4" },
+            React.createElement(Btn, { variant: "ghost", onClick: () => onIdCard(s) }, "ID Card"),
+            React.createElement(Btn, { variant: "ghost", onClick: () => onMarks(s) }, "Result"))));
+}
+function StudentsTab({ students, allStudents, total, filter, setFilter, editMode, onAdd, onEdit, onDelete, onIdCard, onMarks, school }) {
+    const [grInput, setGrInput] = useState("");
+    const [searched, setSearched] = useState(false);
+    const [found, setFound] = useState(null);
+    function doSearch() {
+        const q = grInput.trim();
+        const match = (allStudents || []).find((s) => String(s.grNumber || "").trim() === q && q.length > 0);
+        setFound(match || null);
+        setSearched(true);
+    }
+    function doReset() {
+        setGrInput("");
+        setSearched(false);
+        setFound(null);
+    }
+    if (!editMode) {
+        return (React.createElement("div", null,
+            React.createElement(PublicBanner, { school: school, subtitle: "Student Register \u2014 GR Number Verification" }),
+            React.createElement(LookupCard, { title: "Find Student Record" },
+                React.createElement(LField, { label: "GR NUMBER" },
+                    React.createElement("input", { value: grInput, onChange: (e) => setGrInput(e.target.value), onKeyDown: (e) => e.key === "Enter" && doSearch(), placeholder: "e.g. 1024", className: lInputClass, style: lInputStyle })),
+                React.createElement("div", { className: "flex gap-3" },
+                    React.createElement(Btn, { onClick: doSearch }, "Search"),
+                    React.createElement(Btn, { variant: "ghost", onClick: doReset }, "Reset"))),
+            searched && !found && (React.createElement(EmptyState, { text: "Is GR Number ke sath koi student record nahi mila." })),
+            found && React.createElement(StudentLookupCard, { s: found, onIdCard: onIdCard, onMarks: onMarks })));
+    }
+    return (React.createElement("div", null,
+        React.createElement("div", { className: "flex items-center justify-between flex-wrap gap-3" },
+            React.createElement(SectionLabel, { n: "03" }, "Student Register"),
+            editMode && React.createElement(Btn, { onClick: onAdd }, "+ Add Student")),
+        React.createElement("div", { className: "flex items-center justify-between mb-4 flex-wrap gap-2" },
+            React.createElement("input", { value: filter, onChange: (e) => setFilter(e.target.value), placeholder: "Search by name, GR number, class, father's name\u2026", className: "px-3 py-2 rounded-md text-sm w-full max-w-sm", style: { border: "1px solid #D8CFB8" } }),
+            React.createElement("span", { className: "text-xs", style: { color: "#4A4237", fontFamily: "JetBrains Mono" } },
+                students.length,
+                " of ",
+                total,
+                " shown")),
+        total === 0 ? (React.createElement(EmptyState, { text: "Abhi koi student record nahi hai. Edit Mode on karke General Register se pehli entry add karein." })) : (React.createElement("div", { className: "rounded-lg overflow-x-auto", style: { border: "1px solid #D8CFB8", background: "#fff" } },
+            React.createElement("table", { className: "w-full text-sm", style: { borderCollapse: "collapse" } },
+                React.createElement("thead", null,
+                    React.createElement("tr", { style: { background: "#0F5132", color: "#FAF6EC" } }, ["", "GR #", "Name", "Father's Name", "Class", "Sec", "DOB", "Admission", ""].map((h) => (React.createElement("th", { key: h, className: "text-left px-3 py-2 font-medium", style: { fontFamily: "JetBrains Mono", fontSize: 11 } }, h))))),
+                React.createElement("tbody", null, students.map((s, i) => (React.createElement("tr", { key: s.id, style: { borderTop: "1px solid #EDE6D6", background: i % 2 ? "#FAF6EC" : "#fff" } },
+                    React.createElement("td", { className: "px-3 py-2" },
+                        React.createElement(Avatar, { url: s.photoUrl, name: s.name, size: 32 })),
+                    React.createElement("td", { className: "px-3 py-2", style: { fontFamily: "JetBrains Mono" } }, s.grNumber),
+                    React.createElement("td", { className: "px-3 py-2 font-medium" }, s.name),
+                    React.createElement("td", { className: "px-3 py-2" }, s.fatherName),
+                    React.createElement("td", { className: "px-3 py-2" }, s.class),
+                    React.createElement("td", { className: "px-3 py-2" }, s.section),
+                    React.createElement("td", { className: "px-3 py-2" }, s.dob),
+                    React.createElement("td", { className: "px-3 py-2" }, s.admissionDate),
+                    React.createElement("td", { className: "px-3 py-2" },
+                        React.createElement("div", { className: "flex gap-1.5 flex-wrap" },
+                            React.createElement("button", { onClick: () => onIdCard(s), className: "text-xs underline", style: { color: "#0F5132" } }, "ID"),
+                            React.createElement("button", { onClick: () => onMarks(s), className: "text-xs underline", style: { color: "#0F5132" } }, "Result"),
+                            editMode && React.createElement("button", { onClick: () => onEdit(s), className: "text-xs underline", style: { color: "#0F5132" } }, "Edit"),
+                            editMode && React.createElement("button", { onClick: () => onDelete(s.id), className: "text-xs underline", style: { color: "#8B2E2E" } }, "Del"))))))))))));
+}
+function GalleryTab({ gallery, editMode, onAdd, onDelete }) {
+    return (React.createElement("div", null,
+        React.createElement("div", { className: "flex items-center justify-between" },
+            React.createElement(SectionLabel, { n: "04" }, "School Gallery"),
+            editMode && React.createElement(Btn, { onClick: onAdd }, "+ Add Photo")),
+        gallery.length === 0 ? (React.createElement(EmptyState, { text: "Abhi koi photo nahi hai. Edit Mode on karke school, teachers ya students ki photo (URL) add karein." })) : (React.createElement("div", { className: "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3" }, gallery.map((g) => (React.createElement("div", { key: g.id, className: "rounded-lg overflow-hidden relative group", style: { border: "1px solid #D8CFB8" } },
+            React.createElement("img", { src: g.url, alt: g.caption, className: "w-full h-40 object-cover" }),
+            g.caption && React.createElement("div", { className: "text-xs px-2 py-1.5", style: { background: "#fff", color: "#4A4237" } }, g.caption),
+            editMode && (React.createElement("button", { onClick: () => onDelete(g.id), className: "absolute top-2 right-2 text-xs px-2 py-1 rounded", style: { background: "#8B2E2Edd", color: "#fff" } }, "Delete")))))))));
+}
+function IdCardsTab({ teachers, students, school, target, setTarget, editMode }) {
+    const printRef = useRef(null);
+    function print() {
+        window.print();
+    }
+    const [teacherIdInput, setTeacherIdInput] = useState("");
+    const [teacherError, setTeacherError] = useState(false);
+    const [grInput, setGrInput] = useState("");
+    const [grError, setGrError] = useState(false);
+    function findTeacher() {
+        const q = teacherIdInput.trim().replace(/[\s-]/g, "");
+        const match = teachers.find((t) => q.length > 0 && ((t.cnic || "").replace(/[\s-]/g, "") === q || (t.pid || "").replace(/[\s-]/g, "") === q));
+        if (match) {
+            setTarget({ type: "teacher", person: match });
+            setTeacherError(false);
+        }
+        else
+            setTeacherError(true);
+    }
+    function findStudent() {
+        const q = grInput.trim();
+        const match = students.find((s) => String(s.grNumber || "").trim() === q && q.length > 0);
+        if (match) {
+            setTarget({ type: "student", person: match });
+            setGrError(false);
+        }
+        else
+            setGrError(true);
+    }
+    const resultPanel = (React.createElement("div", { className: "md:col-span-2" }, !target ? (React.createElement(EmptyState, { text: editMode ? "Bayen taraf se koi teacher ya student chunain ID card banane ke liye." : "Bayen taraf se apna CNIC/PID (teacher) ya GR Number (student) darj karein." })) : (React.createElement("div", null,
+        React.createElement("div", { ref: printRef, className: "print-card", style: {
+                width: 320, borderRadius: 14, overflow: "hidden", border: "1px solid #D8CFB8",
+                boxShadow: "0 8px 24px rgba(15,81,50,0.15)", background: "#fff", fontFamily: "Inter",
+            } },
+            React.createElement("div", { style: { background: "#0F5132", color: "#FAF6EC", padding: "14px 16px", display: "flex", alignItems: "center", gap: 10 } },
+                React.createElement(Seal, { size: 34 }),
+                React.createElement("div", null,
+                    React.createElement("div", { style: { fontFamily: "Noto Serif", fontWeight: 700, fontSize: 12, lineHeight: 1.2 } }, school.name),
+                    React.createElement("div", { style: { fontSize: 9, opacity: 0.8, fontFamily: "JetBrains Mono", letterSpacing: 1 } }, target.type === "teacher" ? "STAFF IDENTITY CARD" : "STUDENT IDENTITY CARD"))),
+            React.createElement("div", { style: { padding: 16, display: "flex", gap: 14 } },
+                React.createElement(Avatar, { url: target.person.photoUrl, name: target.person.name, size: 72, square: true }),
+                React.createElement("div", { style: { fontSize: 12, color: "#1F2A24" } },
+                    React.createElement("div", { style: { fontFamily: "Noto Serif", fontWeight: 700, fontSize: 15, color: "#0F5132" } }, target.person.name),
+                    target.type === "teacher" ? (React.createElement(React.Fragment, null,
+                        React.createElement("div", null, target.person.designation),
+                        React.createElement("div", { style: { color: "#4A4237" } }, target.person.schoolName))) : (React.createElement(React.Fragment, null,
+                        React.createElement("div", null,
+                            "Class ",
+                            target.person.class,
+                            target.person.section ? `-${target.person.section}` : ""),
+                        React.createElement("div", { style: { color: "#4A4237" } },
+                            "S/O ",
+                            target.person.fatherName))))),
+            React.createElement("div", { style: { padding: "0 16px 16px", fontFamily: "JetBrains Mono", fontSize: 10, color: "#4A4237" } }, target.type === "student" ? (React.createElement("div", null,
+                "GR No: ",
+                target.person.grNumber || "—")) : (React.createElement(React.Fragment, null,
+                React.createElement("div", null,
+                    "DOB: ",
+                    target.person.dob || "—"),
+                React.createElement("div", null,
+                    "Service: ",
+                    calcServiceDuration(target.person.entryInService))))),
+            React.createElement("div", { style: { height: 6, background: "#C9A227" } })),
+        React.createElement(Btn, { variant: "gold", onClick: print, className: "mt-4" }, "\uD83D\uDDA8 Print / Save as PDF")))));
+    if (!editMode) {
+        return (React.createElement("div", null,
+            React.createElement(PublicBanner, { school: school, subtitle: "ID Card Generator \u2014 Identity Verification" }),
+            React.createElement("div", { className: "grid md:grid-cols-3 gap-6" },
+                React.createElement("div", { className: "md:col-span-1 space-y-5" },
+                    React.createElement(LookupCard, { title: "Teacher ID Card" },
+                        React.createElement(LField, { label: "CNIC / PID" },
+                            React.createElement("input", { value: teacherIdInput, onChange: (e) => setTeacherIdInput(e.target.value), onKeyDown: (e) => e.key === "Enter" && findTeacher(), placeholder: "e.g. 42101-1234567-1", className: lInputClass, style: lInputStyle })),
+                        React.createElement("div", { className: "flex gap-3" },
+                            React.createElement(Btn, { onClick: findTeacher }, "Search"),
+                            React.createElement(Btn, { variant: "ghost", onClick: () => { setTeacherIdInput(""); setTeacherError(false); } }, "Reset")),
+                        teacherError && React.createElement("p", { className: "text-xs mt-2", style: { color: "#8B2E2E" } }, "Koi teacher nahi mila.")),
+                    React.createElement(LookupCard, { title: "Student ID Card" },
+                        React.createElement(LField, { label: "GR NUMBER" },
+                            React.createElement("input", { value: grInput, onChange: (e) => setGrInput(e.target.value), onKeyDown: (e) => e.key === "Enter" && findStudent(), placeholder: "e.g. 1024", className: lInputClass, style: lInputStyle })),
+                        React.createElement("div", { className: "flex gap-3" },
+                            React.createElement(Btn, { onClick: findStudent }, "Search"),
+                            React.createElement(Btn, { variant: "ghost", onClick: () => { setGrInput(""); setGrError(false); } }, "Reset")),
+                        grError && React.createElement("p", { className: "text-xs mt-2", style: { color: "#8B2E2E" } }, "Koi student nahi mila."))),
+                resultPanel),
+            React.createElement("style", null, `
+          @media print {
+            body * { visibility: hidden; }
+            .print-card, .print-card * { visibility: visible; }
+            .print-card { position: fixed; top: 40px; left: 40px; }
+          }
+        `)));
+    }
+    return (React.createElement("div", null,
+        React.createElement(SectionLabel, { n: "05" }, "ID Card Generator"),
+        React.createElement("div", { className: "grid md:grid-cols-3 gap-6" },
+            React.createElement("div", { className: "md:col-span-1" },
+                React.createElement("p", { className: "text-xs font-semibold mb-2", style: { color: "#0F5132" } }, "Select Teacher"),
+                React.createElement("div", { className: "rounded-lg mb-4 max-h-40 overflow-y-auto", style: { border: "1px solid #D8CFB8", background: "#fff" } },
+                    teachers.length === 0 && React.createElement("p", { className: "text-xs p-3", style: { color: "#8B8371" } }, "No teachers yet"),
+                    teachers.map((t) => (React.createElement("button", { key: t.id, onClick: () => setTarget({ type: "teacher", person: t }), className: "w-full text-left px-3 py-2 text-sm hover:opacity-70", style: { borderBottom: "1px solid #EDE6D6" } }, t.name)))),
+                React.createElement("p", { className: "text-xs font-semibold mb-2", style: { color: "#0F5132" } }, "Select Student"),
+                React.createElement("div", { className: "rounded-lg max-h-40 overflow-y-auto", style: { border: "1px solid #D8CFB8", background: "#fff" } },
+                    students.length === 0 && React.createElement("p", { className: "text-xs p-3", style: { color: "#8B8371" } }, "No students yet"),
+                    students.map((s) => (React.createElement("button", { key: s.id, onClick: () => setTarget({ type: "student", person: s }), className: "w-full text-left px-3 py-2 text-sm hover:opacity-70", style: { borderBottom: "1px solid #EDE6D6" } },
+                        s.name,
+                        " ",
+                        React.createElement("span", { style: { color: "#8B8371" } },
+                            "(",
+                            s.grNumber,
+                            ")")))))),
+            resultPanel),
+        React.createElement("style", null, `
+        @media print {
+          body * { visibility: hidden; }
+          .print-card, .print-card * { visibility: visible; }
+          .print-card { position: fixed; top: 40px; left: 40px; }
+        }
+      `)));
+}
+function AdmitSlip({ s, school }) {
+    return (React.createElement("div", { className: "admit-slip", style: {
+            width: 380, border: "2px solid #0F5132", borderRadius: 10, overflow: "hidden",
+            background: "#fff", fontFamily: "Inter", breakInside: "avoid",
+        } },
+        React.createElement("div", { style: { background: "#0F5132", color: "#FAF6EC", padding: "12px 16px", textAlign: "center" } },
+            React.createElement("div", { style: { fontFamily: "Noto Serif", fontWeight: 700, fontSize: 14 } }, school.name),
+            React.createElement("div", { style: { fontSize: 9, opacity: 0.85, marginTop: 2 } }, school.address),
+            React.createElement("div", { style: { fontSize: 11, fontWeight: 700, marginTop: 6, letterSpacing: 1 } }, "ADMIT CARD")),
+        React.createElement("div", { style: { padding: 14, display: "flex", gap: 12 } },
+            React.createElement(Avatar, { url: s.photoUrl, name: s.name, size: 64, square: true }),
+            React.createElement("div", { style: { fontSize: 12, color: "#1F2A24", flex: 1 } }, [
+                ["Exam", `${school.currentExamTitle || "—"}${school.currentExamYear ? " (" + school.currentExamYear + ")" : ""}`],
+                ["Student Name", s.name],
+                ["Father's Name", s.fatherName],
+                ["Class", s.class + (s.section ? `-${s.section}` : "")],
+                ["Roll No / GR No", s.grNumber],
+                ["Exam Centre", school.name],
+            ].map(([label, val]) => (React.createElement("div", { key: label, className: "flex py-1", style: { borderBottom: "1px solid #EDE6D6" } },
+                React.createElement("div", { className: "w-32 flex-shrink-0 font-semibold", style: { color: "#0F5132" } }, label),
+                React.createElement("div", null, val || "—")))))),
+        React.createElement("div", { className: "flex justify-between px-4 pb-4 text-xs", style: { color: "#4A4237" } },
+            React.createElement("div", null, "Head Master Signature: __________")),
+        React.createElement("div", { style: { height: 5, background: "#C9A227" } })));
+}
+function AdmitCardTab({ school, students, editMode }) {
+    const classes = ["VI", "VII", "VIII"];
+    const [classFilter, setClassFilter] = useState("");
+    const [grInput, setGrInput] = useState("");
+    const [grError, setGrError] = useState(false);
+    const [found, setFound] = useState(null);
+    function print() { window.print(); }
+    function doSearch() {
+        const q = grInput.trim();
+        const match = students.find((s) => String(s.grNumber || "").trim() === q && q.length > 0 && (!classFilter || s.class === classFilter));
+        if (match) {
+            setFound(match);
+            setGrError(false);
+        }
+        else {
+            setFound(null);
+            setGrError(true);
+        }
+    }
+    function doReset() {
+        setGrInput("");
+        setClassFilter("");
+        setGrError(false);
+        setFound(null);
+    }
+    if (!editMode) {
+        return (React.createElement("div", null,
+            React.createElement(PublicBanner, { school: school, subtitle: "Admit Card Slip \u2014 Roll Number Verification" }),
+            React.createElement(LookupCard, { title: "Check Your Admit Card" },
+                React.createElement("div", { className: "grid grid-cols-2 gap-4" },
+                    React.createElement(LField, { label: "YEAR" },
+                        React.createElement("select", { disabled: true, value: school.currentExamYear || "", className: lInputClass, style: Object.assign(Object.assign({}, lInputStyle), { color: "#4A4237", background: "#F5F1E6" }) },
+                            React.createElement("option", { value: school.currentExamYear || "" }, school.currentExamYear || "—"))),
+                    React.createElement(LField, { label: "CLASS" },
+                        React.createElement("select", { value: classFilter, onChange: (e) => setClassFilter(e.target.value), className: lInputClass, style: lInputStyle },
+                            React.createElement("option", { value: "" }, "All"),
+                            classes.map((c) => React.createElement("option", { key: c, value: c }, c))))),
+                React.createElement(LField, { label: "GR NUMBER" },
+                    React.createElement("input", { value: grInput, onChange: (e) => setGrInput(e.target.value), onKeyDown: (e) => e.key === "Enter" && doSearch(), placeholder: "e.g. 1024", className: lInputClass, style: lInputStyle })),
+                React.createElement("div", { className: "flex gap-3" },
+                    React.createElement(Btn, { onClick: doSearch }, "Check Slip"),
+                    React.createElement(Btn, { variant: "ghost", onClick: doReset }, "Reset")),
+                grError && React.createElement("p", { className: "text-xs mt-3", style: { color: "#8B2E2E" } }, "Is GR Number ke sath koi student record nahi mila.")),
+            found && (React.createElement("div", null,
+                React.createElement(AdmitSlip, { s: found, school: school }),
+                React.createElement(Btn, { variant: "gold", onClick: print, className: "mt-4" }, "\uD83D\uDDA8 Print / Save as PDF"))),
+            React.createElement("style", null, `
+          @media print {
+            body * { visibility: hidden; }
+            .admit-slip, .admit-slip * { visibility: visible; }
+            .admit-slip { position: fixed; top: 40px; left: 40px; }
+          }
+        `)));
+    }
+    const list = students
+        .filter((s) => !classFilter || s.class === classFilter)
+        .slice()
+        .sort((a, b) => (a.class || "").localeCompare(b.class || "") || Number(a.grNumber || 0) - Number(b.grNumber || 0));
+    return (React.createElement("div", null,
+        React.createElement(SectionLabel, { n: "08" }, "Admit Card"),
+        React.createElement("div", { className: "rounded-lg p-4 mb-5 flex flex-wrap items-center gap-3", style: { border: "1px solid #D8CFB8", background: "#fff" } },
+            React.createElement("div", { className: "text-sm", style: { color: "#4A4237" } },
+                "Exam: ",
+                React.createElement("span", { className: "font-semibold", style: { color: "#0F5132" } },
+                    school.currentExamTitle || "—",
+                    school.currentExamYear ? ` (${school.currentExamYear})` : ""),
+                React.createElement("span", { className: "text-xs ml-2", style: { color: "#8B8371" } }, "(School Details mein change karein)")),
+            React.createElement("select", { value: classFilter, onChange: (e) => setClassFilter(e.target.value), className: "text-sm px-3 py-2 rounded-md ml-auto", style: { border: "1px solid #D8CFB8", background: "#fff", fontFamily: "Inter" } },
+                React.createElement("option", { value: "" }, "All Classes"),
+                classes.map((c) => React.createElement("option", { key: c, value: c },
+                    "Class ",
+                    c))),
+            React.createElement(Btn, { variant: "gold", onClick: print },
+                "\uD83D\uDDA8 Print All (",
+                list.length,
+                ")")),
+        list.length === 0 ? (React.createElement(EmptyState, { text: "Is class ke liye koi student nahi mila." })) : (React.createElement("div", { className: "admit-batch flex flex-wrap gap-5" }, list.map((s) => React.createElement(AdmitSlip, { key: s.id, s: s, school: school })))),
+        React.createElement("style", null, `
+        @media print {
+          body * { visibility: hidden; }
+          .admit-batch, .admit-batch * { visibility: visible; }
+          .admit-batch { position: absolute; top: 0; left: 0; }
+          .admit-slip { break-inside: avoid; margin-bottom: 16px; }
+        }
+      `)));
+}
+function ResultsTab({ students, editMode, classFilter, setClassFilter, examType, setExamType, onEditMarks, school }) {
+    const classes = ["VI", "VII", "VIII"];
+    const list = students
+        .filter((s) => !classFilter || s.class === classFilter)
+        .slice()
+        .sort((a, b) => (a.class || "").localeCompare(b.class || "") || Number(a.grNumber || 0) - Number(b.grNumber || 0));
+    function summarize(s) {
+        const m = (s.results && s.results[examType]) || {};
+        let total = 0, appeared = 0, absent = 0;
+        SUBJECTS.forEach(([key]) => {
+            const v = m[key];
+            if (v === null || v === undefined || v === "")
+                absent++;
+            else {
+                total += Number(v) || 0;
+                appeared++;
+            }
+        });
+        return { total, appeared, absent };
+    }
+    const [grInput, setGrInput] = useState("");
+    const [searched, setSearched] = useState(false);
+    const [foundResult, setFoundResult] = useState(null);
+    function doSearch() {
+        const q = grInput.trim();
+        const match = students.find((s) => String(s.grNumber || "").trim() === q && q.length > 0);
+        setFoundResult(match || null);
+        setSearched(true);
+    }
+    const examToggle = (React.createElement("div", { className: "flex gap-1 rounded-md p-1", style: { background: "#fff", border: "1px solid #D8CFB8" } }, [["annual", "Annual"], ["midterm", "Mid Term"]].map(([key, label]) => (React.createElement("button", { key: key, onClick: () => setExamType(key), className: "text-xs font-semibold px-3 py-1.5 rounded", style: examType === key ? { background: "#0F5132", color: "#FAF6EC" } : { color: "#4A4237" } }, label)))));
+    if (!editMode) {
+        const sum = foundResult ? summarize(foundResult) : null;
+        const m = foundResult ? ((foundResult.results && foundResult.results[examType]) || {}) : {};
+        return (React.createElement("div", null,
+            React.createElement(PublicBanner, { school: school, subtitle: `${examType === "annual" ? "Annual" : "Mid Term"} Result — GR Number Verification` }),
+            React.createElement(LookupCard, { title: "Check Your Result" },
+                React.createElement(LField, { label: "EXAM TYPE" }, examToggle),
+                React.createElement(LField, { label: "GR NUMBER" },
+                    React.createElement("input", { value: grInput, onChange: (e) => setGrInput(e.target.value), onKeyDown: (e) => e.key === "Enter" && doSearch(), placeholder: "e.g. 1024", className: lInputClass, style: lInputStyle })),
+                React.createElement("div", { className: "flex gap-3" },
+                    React.createElement(Btn, { onClick: doSearch }, "Search"),
+                    React.createElement(Btn, { variant: "ghost", onClick: () => { setGrInput(""); setSearched(false); setFoundResult(null); } }, "Reset"))),
+            searched && !foundResult && (React.createElement(EmptyState, { text: "Is GR Number ke sath koi student record nahi mila." })),
+            foundResult && (React.createElement("div", { className: "rounded-lg overflow-hidden max-w-md", style: { border: "1px solid #D8CFB8", background: "#fff" } },
+                React.createElement("div", { className: "p-4", style: { borderBottom: "1px solid #EDE6D6" } },
+                    React.createElement("div", { className: "font-semibold", style: { color: "#0F5132", fontFamily: "Noto Serif" } }, foundResult.name),
+                    React.createElement("div", { className: "text-xs", style: { color: "#4A4237" } },
+                        "GR ",
+                        foundResult.grNumber,
+                        " \u00B7 Class ",
+                        foundResult.class)),
+                SUBJECTS.map(([key, label]) => (React.createElement("div", { key: key, className: "flex px-4 py-2 text-sm", style: { borderBottom: "1px solid #EDE6D6" } },
+                    React.createElement("div", { className: "w-40 flex-shrink-0", style: { color: "#4A4237" } }, label),
+                    React.createElement("div", { style: { color: "#1F2A24", fontFamily: "JetBrains Mono" } }, m[key] === null || m[key] === undefined || m[key] === "" ? "—" : m[key])))),
+                React.createElement("div", { className: "flex px-4 py-3 text-sm font-semibold", style: { color: "#0F5132" } },
+                    React.createElement("div", { className: "w-40 flex-shrink-0" }, "Total"),
+                    React.createElement("div", { style: { fontFamily: "JetBrains Mono" } }, sum.appeared > 0 ? sum.total : "—"))))));
+    }
+    return (React.createElement("div", null,
+        React.createElement(SectionLabel, { n: "06" }, examType === "annual" ? "Annual Result" : "Mid Term Result"),
+        React.createElement("div", { className: "flex flex-wrap items-center gap-2 mb-5" },
+            examToggle,
+            React.createElement("select", { value: classFilter, onChange: (e) => setClassFilter(e.target.value), className: "text-sm px-3 py-2 rounded-md", style: { border: "1px solid #D8CFB8", background: "#fff", fontFamily: "Inter" } },
+                React.createElement("option", { value: "" }, "All Classes"),
+                classes.map((c) => React.createElement("option", { key: c, value: c },
+                    "Class ",
+                    c))),
+            React.createElement("span", { className: "text-xs ml-auto", style: { color: "#8B8371", fontFamily: "JetBrains Mono" } },
+                list.length,
+                " students")),
+        list.length === 0 ? (React.createElement(EmptyState, { text: "Is class ke liye koi student record nahi hai." })) : (React.createElement("div", { className: "rounded-lg overflow-x-auto", style: { border: "1px solid #D8CFB8", background: "#fff" } },
+            React.createElement("table", { className: "w-full text-sm", style: { borderCollapse: "collapse" } },
+                React.createElement("thead", null,
+                    React.createElement("tr", { style: { background: "#0F5132", color: "#FAF6EC" } }, ["GR #", "Name", "Class", ...SUBJECTS.map(([, label]) => label), "Total", ""].map((h) => (React.createElement("th", { key: h, className: "text-left px-3 py-2 font-medium whitespace-nowrap", style: { fontFamily: "JetBrains Mono", fontSize: 10 } }, h))))),
+                React.createElement("tbody", null, list.map((s, i) => {
+                    const m = (s.results && s.results[examType]) || {};
+                    const sum = summarize(s);
+                    return (React.createElement("tr", { key: s.id, style: { borderTop: "1px solid #EDE6D6", background: i % 2 ? "#FAF6EC" : "#fff" } },
+                        React.createElement("td", { className: "px-3 py-2", style: { fontFamily: "JetBrains Mono" } }, s.grNumber),
+                        React.createElement("td", { className: "px-3 py-2 font-medium whitespace-nowrap" }, s.name),
+                        React.createElement("td", { className: "px-3 py-2" }, s.class),
+                        SUBJECTS.map(([key]) => (React.createElement("td", { key: key, className: "px-3 py-2 text-center", style: { fontFamily: "JetBrains Mono" } }, m[key] === null || m[key] === undefined || m[key] === "" ? "—" : m[key]))),
+                        React.createElement("td", { className: "px-3 py-2 font-semibold", style: { color: "#0F5132", fontFamily: "JetBrains Mono" } }, sum.appeared > 0 ? sum.total : "—"),
+                        React.createElement("td", { className: "px-3 py-2" }, editMode && (React.createElement("button", { onClick: () => onEditMarks(s), className: "text-xs underline whitespace-nowrap", style: { color: "#0F5132" } }, "Edit Marks")))));
+                }))))),
+        React.createElement("p", { className: "text-xs mt-3", style: { color: "#8B8371" } }, "\"Total\" obtained marks ka joamma hai (sirf jin subjects mein number diye gaye hain). \"\u2014\" ka matlab hai marks abhi record nahi huay ya student ghair hazir tha.")));
+}
+function LcRow({ n, label, value }) {
+    return (React.createElement("tr", null,
+        React.createElement("td", { style: { padding: "4px 8px 4px 0", fontSize: 12, color: "#4A4237", whiteSpace: "nowrap", verticalAlign: "top", width: 26 } },
+            n,
+            "."),
+        React.createElement("td", { style: { padding: "4px 8px 4px 0", fontSize: 12, color: "#4A4237", whiteSpace: "nowrap", verticalAlign: "top", width: 170 } }, label),
+        React.createElement("td", { style: { padding: "4px 0", fontSize: 13, fontWeight: 600, color: "#1F2A24", borderBottom: "1px solid #D8CFB8" } }, value || "—")));
+}
+function LcCertificateCard({ record, school }) {
+    return (React.createElement("div", { className: "print-card", style: {
+            border: "2px solid #0F5132", borderRadius: 10, padding: 32, background: "#fff",
+            fontFamily: "Inter", position: "relative", maxWidth: 680,
+        } },
+        React.createElement("div", { className: "absolute", style: { top: 20, right: 24, opacity: 0.9 } },
+            React.createElement(Seal, { size: 64 })),
+        React.createElement("div", { style: { textAlign: "center", marginBottom: 16 } },
+            React.createElement("div", { style: { fontFamily: "Noto Serif", fontWeight: 700, fontSize: 19, color: "#0F5132" } }, school.name),
+            React.createElement("div", { style: { fontSize: 11, color: "#4A4237", marginTop: 2 } }, school.address),
+            school.emisCode && React.createElement("div", { style: { fontSize: 10, color: "#8B8371", fontFamily: "JetBrains Mono", marginTop: 2 } },
+                "EMIS Code: ",
+                school.emisCode),
+            React.createElement("div", { style: { height: 2, background: "#C9A227", width: 80, margin: "10px auto 0" } })),
+        React.createElement("h3", { style: { textAlign: "center", fontFamily: "Noto Serif", fontWeight: 700, fontSize: 17, textDecoration: "underline", marginBottom: 4, color: "#1F2A24" } }, "LEAVING CERTIFICATE"),
+        React.createElement("div", { style: { textAlign: "center", fontSize: 11, color: "#8B8371", fontFamily: "JetBrains Mono", marginBottom: 16 } },
+            "Session / Year: ",
+            record.year || "—"),
+        React.createElement("table", { style: { width: "100%", borderCollapse: "collapse" } },
+            React.createElement("tbody", null,
+                React.createElement(LcRow, { n: "\u2014", label: "General Register No.", value: record.grNumber }),
+                React.createElement(LcRow, { n: 1, label: "Name of Pupil", value: record.name }),
+                React.createElement(LcRow, { n: 2, label: "Father's Name", value: record.fatherName }),
+                React.createElement(LcRow, { n: 3, label: "Religion / Race & Caste", value: `${record.religion || "—"} / ${record.caste || "—"}` }),
+                React.createElement(LcRow, { n: 4, label: "Place of Birth", value: record.placeOfBirth }),
+                React.createElement(LcRow, { n: 5, label: "Date of Birth", value: `${record.dob || "—"}${record.dobWords ? ` (${record.dobWords})` : ""}` }),
+                React.createElement(LcRow, { n: 6, label: "Last School Attended", value: record.lastSchool }),
+                React.createElement(LcRow, { n: 7, label: "Date of Admission", value: record.admissionDate }),
+                React.createElement(LcRow, { n: 8, label: "Class in which Admitted", value: record.admittedClass }),
+                React.createElement(LcRow, { n: 9, label: "Progress / Conduct", value: `${record.progress || "—"} / ${record.conduct || "—"}` }),
+                React.createElement(LcRow, { n: 10, label: "Class Studying (or Passed)", value: record.passedClass ? `${record.passedClass} Class Passed` : "—" }),
+                React.createElement(LcRow, { n: 11, label: "Date of Leaving School", value: record.leavingDate }),
+                React.createElement(LcRow, { n: 12, label: "Reason of Leaving School", value: record.reason }),
+                React.createElement(LcRow, { n: 13, label: "School Dues (if any)", value: record.dues }),
+                React.createElement(LcRow, { n: 14, label: "Remarks", value: record.remarks }))),
+        React.createElement("p", { style: { fontSize: 10, color: "#8B8371", marginTop: 10 } }, "* Certified that the above information is in accordance with the School General Register."),
+        React.createElement("div", { className: "flex justify-between items-end", style: { marginTop: 36 } },
+            React.createElement("div", { style: { fontSize: 12, color: "#4A4237" } },
+                "Date of Issue: ",
+                React.createElement("b", { style: { fontFamily: "JetBrains Mono" } }, record.issueDate || "—")),
+            React.createElement("div", { style: { textAlign: "center" } },
+                React.createElement("div", { style: { width: 150, borderTop: "1px solid #1F2A24", marginBottom: 4 } }),
+                React.createElement("div", { style: { fontSize: 11, color: "#4A4237" } }, "Head Master")),
+            React.createElement("div", { style: { textAlign: "center" } },
+                React.createElement("div", { style: { width: 150, borderTop: "1px solid #1F2A24", marginBottom: 4 } }),
+                React.createElement("div", { style: { fontSize: 11, color: "#4A4237" } }, "Taluka Education Officer")))));
+}
+function LeavingCertificateTab({ students, school, target, setTarget, lcRecords = [], editMode, yearFilter, setYearFilter, onAddRecord, onEditRecord, onDeleteRecord, }) {
+    const [mode, setMode] = useState("records"); // "records" | "generate"
+    const [filter, setFilter] = useState("");
+    const [lcTarget, setLcTarget] = useState(null);
+    const years = ["all", ...Array.from(new Set(lcRecords.map((r) => r.year).filter(Boolean))).sort().reverse()];
+    const lcList = lcRecords.filter((r) => {
+        var _a, _b, _c;
+        const q = filter.toLowerCase();
+        const matchesQ = !q || ((_a = r.name) === null || _a === void 0 ? void 0 : _a.toLowerCase().includes(q)) || ((_b = r.grNumber) === null || _b === void 0 ? void 0 : _b.toLowerCase().includes(q)) || ((_c = r.fatherName) === null || _c === void 0 ? void 0 : _c.toLowerCase().includes(q));
+        const matchesYear = yearFilter === "all" || r.year === yearFilter;
+        return matchesQ && matchesYear;
+    });
+    const list = students.filter((s) => {
+        var _a, _b;
+        const q = filter.toLowerCase();
+        return !q || ((_a = s.name) === null || _a === void 0 ? void 0 : _a.toLowerCase().includes(q)) || ((_b = s.grNumber) === null || _b === void 0 ? void 0 : _b.toLowerCase().includes(q));
+    });
+    function todayStr() {
+        const d = new Date();
+        return d.toLocaleDateString("en-GB");
+    }
+    function print() {
+        window.print();
+    }
+    const [pubGrInput, setPubGrInput] = useState("");
+    const [pubYearInput, setPubYearInput] = useState("");
+    const [pubSearched, setPubSearched] = useState(false);
+    const [pubFound, setPubFound] = useState(null);
+    function doPublicSearch() {
+        const q = pubGrInput.trim();
+        const y = pubYearInput.trim();
+        let matches = lcRecords.filter((r) => String(r.grNumber || "").trim() === q && q.length > 0);
+        if (y)
+            matches = matches.filter((r) => String(r.year || "").trim() === y);
+        const match = matches.sort((a, b) => (b.year || "").localeCompare(a.year || ""))[0];
+        setPubFound(match || null);
+        setPubSearched(true);
+    }
+    if (!editMode) {
+        return (React.createElement("div", null,
+            React.createElement(PublicBanner, { school: school, subtitle: "Leaving Certificate \u2014 GR Number Verification" }),
+            React.createElement(LookupCard, { title: "Find Leaving Certificate" },
+                React.createElement("div", { className: "grid grid-cols-2 gap-4" },
+                    React.createElement(LField, { label: "GR NUMBER" },
+                        React.createElement("input", { value: pubGrInput, onChange: (e) => setPubGrInput(e.target.value), onKeyDown: (e) => e.key === "Enter" && doPublicSearch(), placeholder: "e.g. 1024", className: lInputClass, style: lInputStyle })),
+                    React.createElement(LField, { label: "YEAR (OPTIONAL)" },
+                        React.createElement("input", { value: pubYearInput, onChange: (e) => setPubYearInput(e.target.value), onKeyDown: (e) => e.key === "Enter" && doPublicSearch(), placeholder: "e.g. 2024-2025", className: lInputClass, style: lInputStyle }))),
+                React.createElement("div", { className: "flex gap-3" },
+                    React.createElement(Btn, { onClick: doPublicSearch }, "Search"),
+                    React.createElement(Btn, { variant: "ghost", onClick: () => { setPubGrInput(""); setPubYearInput(""); setPubSearched(false); setPubFound(null); } }, "Reset"))),
+            pubSearched && !pubFound && (React.createElement(EmptyState, { text: "Is GR Number (aur Year) ke liye koi Leaving Certificate record nahi mila." })),
+            pubFound && (React.createElement("div", null,
+                React.createElement(LcCertificateCard, { record: pubFound, school: school }),
+                React.createElement("div", { className: "flex gap-2 mt-4" },
+                    React.createElement(Btn, { variant: "gold", onClick: print }, "\uD83D\uDDA8 Print / Save as PDF"))))));
+    }
+    return (React.createElement("div", null,
+        React.createElement(SectionLabel, { n: "07" }, "School Leaving Certificate"),
+        React.createElement("div", { className: "flex gap-2 mb-6" },
+            React.createElement(Btn, { variant: mode === "records" ? "primary" : "ghost", onClick: () => { setMode("records"); setFilter(""); } }, "\uD83D\uDCD6 Issued Records (Year-wise)"),
+            React.createElement(Btn, { variant: mode === "generate" ? "primary" : "ghost", onClick: () => { setMode("generate"); setFilter(""); } }, "\u270E Quick Generate")),
+        mode === "records" && (React.createElement("div", { className: "grid md:grid-cols-3 gap-6" },
+            React.createElement("div", { className: "md:col-span-1" },
+                React.createElement("div", { className: "flex gap-2 mb-2" },
+                    React.createElement("select", { value: yearFilter, onChange: (e) => setYearFilter(e.target.value), className: "text-sm px-2 py-2 rounded-md", style: { border: "1px solid #D8CFB8", fontFamily: "Inter", flexShrink: 0 } }, years.map((y) => (React.createElement("option", { key: y, value: y }, y === "all" ? "All Years" : y)))),
+                    React.createElement("input", { value: filter, onChange: (e) => setFilter(e.target.value), placeholder: "Search name / GR No\u2026", className: "w-full text-sm px-3 py-2 rounded-md", style: { border: "1px solid #D8CFB8" } })),
+                editMode && (React.createElement(Btn, { variant: "gold", onClick: onAddRecord, className: "w-full mb-2" }, "+ Add Record")),
+                React.createElement("div", { className: "rounded-lg max-h-96 overflow-y-auto", style: { border: "1px solid #D8CFB8", background: "#fff" } },
+                    lcList.length === 0 && React.createElement("p", { className: "text-xs p-3", style: { color: "#8B8371" } }, "Is year mein koi record nahi mila"),
+                    lcList.map((r) => (React.createElement("button", { key: r.id, onClick: () => setLcTarget(r), className: "w-full text-left px-3 py-2 text-sm hover:opacity-70", style: { borderBottom: "1px solid #EDE6D6", background: (lcTarget === null || lcTarget === void 0 ? void 0 : lcTarget.id) === r.id ? "#EDE6D6" : "transparent" } },
+                        r.name,
+                        " ",
+                        React.createElement("span", { style: { color: "#8B8371" } },
+                            "(GR ",
+                            r.grNumber,
+                            ") \u00B7 ",
+                            r.year))))),
+                React.createElement("p", { className: "text-xs mt-2", style: { color: "#8B8371" } },
+                    lcList.length,
+                    " record",
+                    lcList.length === 1 ? "" : "s",
+                    " ",
+                    yearFilter !== "all" ? `for ${yearFilter}` : "total")),
+            React.createElement("div", { className: "md:col-span-2" }, !lcTarget ? (React.createElement(EmptyState, { text: "Bayen taraf se ek issued record chunain, ya year filter se batch dekhein." })) : (React.createElement("div", null,
+                React.createElement(LcCertificateCard, { record: lcTarget, school: school }),
+                React.createElement("div", { className: "flex gap-2 mt-4" },
+                    React.createElement(Btn, { variant: "gold", onClick: print }, "\uD83D\uDDA8 Print / Save as PDF"),
+                    editMode && (React.createElement(React.Fragment, null,
+                        React.createElement(Btn, { variant: "ghost", onClick: () => onEditRecord(lcTarget) }, "Edit Record"),
+                        React.createElement(Btn, { variant: "danger", onClick: () => { onDeleteRecord(lcTarget.id); setLcTarget(null); } }, "Delete"))))))))),
+        mode === "generate" && (React.createElement("div", { className: "grid md:grid-cols-3 gap-6" },
+            React.createElement("div", { className: "md:col-span-1" },
+                React.createElement("input", { value: filter, onChange: (e) => setFilter(e.target.value), placeholder: "Search student\u2026", className: "w-full text-sm px-3 py-2 rounded-md mb-2", style: { border: "1px solid #D8CFB8" } }),
+                React.createElement("div", { className: "rounded-lg max-h-96 overflow-y-auto", style: { border: "1px solid #D8CFB8", background: "#fff" } },
+                    list.length === 0 && React.createElement("p", { className: "text-xs p-3", style: { color: "#8B8371" } }, "Koi student nahi mila"),
+                    list.map((s) => (React.createElement("button", { key: s.id, onClick: () => setTarget(s), className: "w-full text-left px-3 py-2 text-sm hover:opacity-70", style: { borderBottom: "1px solid #EDE6D6", background: (target === null || target === void 0 ? void 0 : target.id) === s.id ? "#EDE6D6" : "transparent" } },
+                        s.name,
+                        " ",
+                        React.createElement("span", { style: { color: "#8B8371" } },
+                            "(",
+                            s.grNumber,
+                            ") \u00B7 Class ",
+                            s.class)))))),
+            React.createElement("div", { className: "md:col-span-2" }, !target ? (React.createElement(EmptyState, { text: "Bayen taraf se student chunain leaving certificate banane ke liye." })) : (React.createElement("div", null,
+                React.createElement(LcCertificateCard, { record: {
+                        grNumber: target.grNumber,
+                        name: target.name,
+                        fatherName: target.fatherName,
+                        religion: "Islam",
+                        caste: "—",
+                        placeOfBirth: target.address || "—",
+                        dob: target.dob || "—",
+                        dobWords: "",
+                        lastSchool: "—",
+                        admissionDate: target.admissionDate || "—",
+                        admittedClass: target.class ? `${target.class}${target.section ? "-" + target.section : ""}` : "—",
+                        progress: "Good",
+                        conduct: "Good",
+                        passedClass: target.class || "—",
+                        leavingDate: todayStr(),
+                        reason: target.class ? `${target.class} Class Passed` : "School Leaving",
+                        dues: "Nil",
+                        remarks: "L.C Issued",
+                        issueDate: todayStr(),
+                        year: "",
+                    }, school: school }),
+                React.createElement(Btn, { variant: "gold", onClick: print, className: "mt-4" }, "\uD83D\uDDA8 Print / Save as PDF")))))),
+        React.createElement("style", null, `
+        @media print {
+          body * { visibility: hidden; }
+          .print-card, .print-card * { visibility: visible; }
+          .print-card { position: fixed; top: 30px; left: 30px; }
+        }
+      `)));
+}
+/* ---------------- Modals / Forms ---------------- */
+function SchoolEditModal({ school, pin, onClose, onSave, onSavePin }) {
+    const [form, setForm] = useState(school);
+    const [newPin, setNewPin] = useState(pin);
+    const set = (k) => (e) => setForm(Object.assign(Object.assign({}, form), { [k]: e.target.value }));
+    return (React.createElement(Modal, { title: "Edit School Details", onClose: onClose },
+        React.createElement(Field, { label: "School Name", value: form.name, onChange: set("name") }),
+        React.createElement(Field, { label: "Urdu Name", value: form.urduName, onChange: set("urduName") }),
+        React.createElement(Field, { label: "Motto", value: form.motto, onChange: set("motto") }),
+        React.createElement("div", { className: "grid grid-cols-2 gap-3" },
+            React.createElement(Field, { label: "Established Year", value: form.establishedYear, onChange: set("establishedYear") }),
+            React.createElement(Field, { label: "EMIS Code", value: form.emisCode, onChange: set("emisCode") })),
+        React.createElement(Field, { label: "Address", value: form.address, onChange: set("address") }),
+        React.createElement(Field, { label: "Map Location (Google Plus Code or place name, for accurate map)", value: form.mapLocation, onChange: set("mapLocation") }),
+        React.createElement("div", { className: "grid grid-cols-2 gap-3" },
+            React.createElement(Field, { label: "Phone", value: form.phone, onChange: set("phone") }),
+            React.createElement(Field, { label: "Email", value: form.email, onChange: set("email") })),
+        React.createElement(Field, { label: "Classes Offered", value: form.totalClasses, onChange: set("totalClasses") }),
+        React.createElement(Field, { label: "Shift", value: form.shifts, onChange: set("shifts") }),
+        React.createElement(Field, { label: "Head Master Name", value: form.principalName, onChange: set("principalName") }),
+        React.createElement(Field, { label: "Head Master Photo URL", value: form.principalPhotoUrl, onChange: set("principalPhotoUrl") }),
+        React.createElement(TextAreaField, { label: "Head Master's Message", value: form.principalMessage, onChange: set("principalMessage") }),
+        React.createElement("div", { className: "mt-4 pt-4", style: { borderTop: "1px solid #D8CFB8" } },
+            React.createElement(Field, { label: "Taluka Education Officer \u2014 Name", value: form.teoName, onChange: set("teoName") }),
+            React.createElement(Field, { label: "Taluka Education Officer \u2014 Photo URL", value: form.teoPhotoUrl, onChange: set("teoPhotoUrl") }),
+            React.createElement(TextAreaField, { label: "Taluka Education Officer \u2014 Message", value: form.teoMessage, onChange: set("teoMessage") })),
+        React.createElement("div", { className: "mt-4 pt-4", style: { borderTop: "1px solid #D8CFB8" } },
+            React.createElement(Field, { label: "District Education Officer \u2014 Name", value: form.deoName, onChange: set("deoName") }),
+            React.createElement(Field, { label: "District Education Officer \u2014 Photo URL", value: form.deoPhotoUrl, onChange: set("deoPhotoUrl") }),
+            React.createElement(TextAreaField, { label: "District Education Officer \u2014 Message", value: form.deoMessage, onChange: set("deoMessage") })),
+        React.createElement("div", { className: "mt-4 pt-4", style: { borderTop: "1px solid #D8CFB8" } },
+            React.createElement(Field, { label: "Current Exam Title (e.g. Annual Examination)", value: form.currentExamTitle, onChange: set("currentExamTitle") }),
+            React.createElement(Field, { label: "Current Exam Year / Session (e.g. 2025)", value: form.currentExamYear, onChange: set("currentExamYear") })),
+        React.createElement("div", { className: "mt-4 pt-4", style: { borderTop: "1px solid #D8CFB8" } },
+            React.createElement(Field, { label: "Change Edit PIN", value: newPin, onChange: (e) => setNewPin(e.target.value) })),
+        React.createElement("div", { className: "flex gap-2 mt-2" },
+            React.createElement(Btn, { onClick: () => { onSave(form); if (newPin !== pin)
+                    onSavePin(newPin); } }, "Save Changes"),
+            React.createElement(Btn, { variant: "ghost", onClick: onClose }, "Cancel"))));
+}
+function PersonEditModal({ title, initial, fields, onClose, onSave }) {
+    const [form, setForm] = useState(initial);
+    const set = (k) => (e) => setForm(Object.assign(Object.assign({}, form), { [k]: e.target.value }));
+    return (React.createElement(Modal, { title: title, onClose: onClose },
+        fields.map(([key, label]) => (React.createElement(Field, { key: key, label: label, value: form[key] || "", onChange: set(key) }))),
+        form.photoUrl && (React.createElement("div", { className: "mb-3" },
+            React.createElement(Avatar, { url: form.photoUrl, name: form.name, size: 56 }))),
+        React.createElement("div", { className: "flex gap-2 mt-2" },
+            React.createElement(Btn, { onClick: () => onSave(Object.assign(Object.assign({}, form), { id: initial.id })) }, "Save"),
+            React.createElement(Btn, { variant: "ghost", onClick: onClose }, "Cancel"))));
+}
+function MarksEditModal({ student, examType, onClose, onSave }) {
+    const initial = (student.results && student.results[examType]) || {};
+    const [form, setForm] = useState(() => {
+        const f = {};
+        SUBJECTS.forEach(([key]) => { f[key] = initial[key] === null || initial[key] === undefined ? "" : String(initial[key]); });
+        return f;
+    });
+    const set = (k) => (e) => setForm(Object.assign(Object.assign({}, form), { [k]: e.target.value }));
+    function handleSave() {
+        const out = {};
+        SUBJECTS.forEach(([key]) => {
+            const v = form[key].trim();
+            if (v === "" || v.toUpperCase() === "A")
+                out[key] = v === "" ? null : null;
+            else
+                out[key] = Number(v);
+        });
+        onSave(out);
+    }
+    return (React.createElement(Modal, { title: `${examType === "annual" ? "Annual" : "Mid Term"} Marks — ${student.name}`, onClose: onClose },
+        React.createElement("p", { className: "text-xs mb-3", style: { color: "#8B8371" } }, "Number likhein ya \"A\" (Absent) ke liye field khali chhoren."),
+        React.createElement("div", { className: "grid grid-cols-2 gap-x-3" }, SUBJECTS.map(([key, label]) => (React.createElement(Field, { key: key, label: label, value: form[key], onChange: set(key), placeholder: "A / number" })))),
+        React.createElement("div", { className: "flex gap-2 mt-2" },
+            React.createElement(Btn, { onClick: handleSave }, "Save Marks"),
+            React.createElement(Btn, { variant: "ghost", onClick: onClose }, "Cancel"))));
+}
+function GalleryForm({ initial, onSave }) {
+    const [url, setUrl] = useState(initial.url || "");
+    const [caption, setCaption] = useState(initial.caption || "");
+    return (React.createElement("div", null,
+        React.createElement(Field, { label: "Image URL", value: url, onChange: (e) => setUrl(e.target.value), placeholder: "https://\u2026" }),
+        React.createElement(Field, { label: "Caption (optional)", value: caption, onChange: (e) => setCaption(e.target.value) }),
+        url && React.createElement("img", { src: url, alt: "", className: "w-full h-32 object-cover rounded mb-3" }),
+        React.createElement(Btn, { onClick: () => onSave({ id: initial.id, url, caption }) }, "Save Photo")));
+}
+function EmptyState({ text }) {
+    return (React.createElement("div", { className: "rounded-lg p-10 text-center text-sm", style: { border: "1px dashed #D8CFB8", color: "#8B8371" } }, text));
+}
+const rootEl = document.getElementById("root");
+const root = ReactDOM.createRoot(rootEl);
+root.render(React.createElement(App, null));
+
+</script>
+</body>
+</html>};
 const DEFAULT_TEACHERS = [
     { id: uid(), name: "Imtiaz Ali", dob: "", designation: "JEST", schoolName: DEFAULT_SCHOOL.name },
     { id: uid(), name: "Hyder Bux", dob: "", designation: "JEST", schoolName: DEFAULT_SCHOOL.name },
